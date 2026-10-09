@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/shadcn-ui-design-system-22e1a246-46b4-4b56-9804-9882cdb9df20/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/shadcn-ui-design-system-22e1a246-46b4-4b56-9804-9882cdb9df20/tokens/colors.css">
+<link rel="stylesheet" href="_ds/shadcn-ui-design-system-22e1a246-46b4-4b56-9804-9882cdb9df20/tokens/typography.css">
+<link rel="stylesheet" href="_ds/shadcn-ui-design-system-22e1a246-46b4-4b56-9804-9882cdb9df20/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/shadcn-ui-design-system-22e1a246-46b4-4b56-9804-9882cdb9df20/components/components.css">
+<link rel="stylesheet" href="_ds/shadcn-ui-design-system-22e1a246-46b4-4b56-9804-9882cdb9df20/styles.css">
+<script src="_ds/shadcn-ui-design-system-22e1a246-46b4-4b56-9804-9882cdb9df20/_ds_bundle.js"></script>
+<style>body{margin:0;background:#f8fafc;font-family:Inter,system-ui,sans-serif;color:#0f172a;-webkit-font-smoothing:antialiased}a{color:#a24688}a:hover{color:#4e3aba}*{box-sizing:border-box}input,textarea,button{font-family:inherit}::-webkit-scrollbar{width:0;height:0}
+@keyframes duoWipe{0%{clip-path:circle(0% at 50% 94%);opacity:1}45%{clip-path:circle(150% at 50% 94%);opacity:1}100%{clip-path:circle(150% at 50% 94%);opacity:0}}
+@keyframes duoLabel{0%{transform:translateY(12px);opacity:0}40%{transform:none;opacity:1}100%{opacity:0}}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-wrap:wrap;gap:56px;justify-content:center;align-items:flex-start;padding:40px 24px;background:radial-gradient(1200px 600px at 0% 0%,#fce7eb 0%,transparent 60%),radial-gradient(1000px 700px at 100% 100%,#e4e0f7 0%,transparent 60%),#f8fafc">
+  <div style="width:290px;max-width:100%;display:flex;flex-direction:column;gap:22px;padding-top:24px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:96px;background:linear-gradient(135deg,#db4e66,#a24688 50%,#4e3aba)"></div><div style="font-size:30px;font-weight:800;letter-spacing:-0.03em">Duo</div></div>
+      <div style="font-size:14px;line-height:1.55;color:#475569;text-wrap:pretty">Two spaces in one app. Personal runs warm in pink, Work runs cool in indigo. The orb in the tab bar flips between them, and every screen, feed, chat list and profile follows.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:12px;font-weight:600;color:#64748b">Jump to screen</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <sc-for list="{{ jumps }}" as="j" hint-placeholder-count="12">
+          <button onClick="{{ j.onClick }}" style="border:0;background:#fff;box-shadow:inset 0 0 0 1px #e2e8f0;border-radius:6px;padding:6px 10px;font-size:13px;font-weight:500;color:#0f172a;cursor:pointer" style-hover="background:#f1f5f9">{{ j.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="font-size:12px;line-height:1.5;color:#64748b">Photos are stock images standing in for user content. Swipe through Opportunities, flip your profile card, send messages, open stories.</div>
+  </div>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ darkFrame }}" hint-size="402px,874px">
+    <div style="height:100%;position:relative;display:flex;flex-direction:column;background:#fff;overflow:hidden">
+
+      <sc-if value="{{ showOnboarding }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:5;background:#fff;display:flex;flex-direction:column">
+          <sc-if value="{{ ob0 }}">
+            <div style="position:relative;height:430px;background:linear-gradient(160deg,#db4e66 0%,#a24688 50%,#4e3aba 100%);overflow:hidden">
+              <div style="position:absolute;left:-40px;right:-40px;top:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;transform:rotate(-8deg)">
+                <img src="assets/p1018.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:14px">
+                <img src="assets/p1.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:14px;margin-top:40px">
+                <img src="assets/p1011.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:14px">
+                <img src="assets/p180.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:14px;margin-top:40px">
+                <img src="assets/p1060.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:14px">
+                <img src="assets/p1058.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:14px;margin-top:40px">
+                <img src="assets/p1031.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:14px">
+                <img src="assets/p1025.jpg" style="width:100%;height:150px;object-fit:cover;border-radius:14px;margin-top:40px">
+              </div>
+              <div style="position:absolute;inset:auto 0 0 0;height:160px;background:linear-gradient(transparent,#fff)"></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:18px;padding:0 24px 44px;margin-top:-30px;position:relative">
+              <div style="font-size:34px;font-weight:800;letter-spacing:-0.03em;line-height:1.05">One account.<br><span style="background:linear-gradient(90deg,#db4e66,#4e3aba);-webkit-background-clip:text;background-clip:text;color:transparent">Two circles.</span></div>
+              <div style="font-size:15px;line-height:1.5;color:#475569">Friends and family on one side, colleagues and careers on the other. Neither sees the other unless you choose.</div>
+              <div style="flex:1"></div>
+              <button onClick="{{ obNext }}" style="height:52px;border:0;border-radius:40px;background:linear-gradient(90deg,#db4e66,#a24688,#4e3aba);color:#fff;font-size:16px;font-weight:600;cursor:pointer">Get started</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ob1 }}">
+            <div style="padding:70px 24px 0;display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;gap:6px;margin-bottom:22px"><div style="height:4px;flex:1;border-radius:40px;background:#db4e66"></div><div style="height:4px;flex:1;border-radius:40px;background:#e2e8f0"></div></div>
+              <div style="width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#db4e66,#a24688);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:10px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconHeart" size="24" hint-size="24px,24px"></x-import></div>
+              <div style="font-size:26px;font-weight:700;letter-spacing:-0.02em">Your Personal side</div>
+              <div style="font-size:14px;color:#64748b">Friends find you by name and phone number.</div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:16px;padding:24px">
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Full name<input value="{{ name }}" onChange="{{ onName }}" placeholder="Alex Rivera" style="height:48px;border:0;box-shadow:inset 0 0 0 1px #cbd5e1;border-radius:10px;padding:0 14px;font-size:16px;outline:none;color:#0f172a" style-focus="box-shadow:inset 0 0 0 2px #db4e66"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Phone number<input value="{{ phone }}" onChange="{{ onPhone }}" placeholder="+1 (510) 555-0142" style="height:48px;border:0;box-shadow:inset 0 0 0 1px #cbd5e1;border-radius:10px;padding:0 14px;font-size:16px;outline:none;color:#0f172a" style-focus="box-shadow:inset 0 0 0 2px #db4e66"></label>
+              <div style="font-size:13px;color:#64748b;display:flex;gap:8px;align-items:center"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconLock" size="14" hint-size="14px,14px"></x-import>Only friends can see your number.</div>
+              <div style="flex:1"></div>
+              <button onClick="{{ obNext }}" style="height:52px;border:0;border-radius:40px;background:linear-gradient(90deg,#db4e66,#a24688);color:#fff;font-size:16px;font-weight:600;cursor:pointer;margin-bottom:20px">Continue</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ ob2 }}">
+            <div style="padding:70px 24px 0;display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;gap:6px;margin-bottom:22px"><div style="height:4px;flex:1;border-radius:40px;background:#a24688"></div><div style="height:4px;flex:1;border-radius:40px;background:#4e3aba"></div></div>
+              <div style="width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#a24688,#4e3aba);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:10px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconBriefcase" size="24" hint-size="24px,24px"></x-import></div>
+              <div style="font-size:26px;font-weight:700;letter-spacing:-0.02em">Your Work side</div>
+              <div style="font-size:14px;color:#64748b">Verify your workplace to earn a badge colleagues trust.</div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:14px;padding:24px">
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Role<input value="{{ role }}" onChange="{{ onRole }}" placeholder="Product Designer" style="height:48px;border:0;box-shadow:inset 0 0 0 1px #cbd5e1;border-radius:10px;padding:0 14px;font-size:16px;outline:none;color:#0f172a" style-focus="box-shadow:inset 0 0 0 2px #4e3aba"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Company<input value="{{ company }}" onChange="{{ onCompany }}" placeholder="Northwind" style="height:48px;border:0;box-shadow:inset 0 0 0 1px #cbd5e1;border-radius:10px;padding:0 14px;font-size:16px;outline:none;color:#0f172a" style-focus="box-shadow:inset 0 0 0 2px #4e3aba"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500">Work email<input value="{{ workEmail }}" onChange="{{ onEmail }}" placeholder="alex@northwind.com" style="height:48px;border:0;box-shadow:inset 0 0 0 1px #cbd5e1;border-radius:10px;padding:0 14px;font-size:16px;outline:none;color:#0f172a" style-focus="box-shadow:inset 0 0 0 2px #4e3aba"></label>
+              <div style="font-size:13px;color:#64748b;display:flex;gap:8px;align-items:center"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconShieldCheck" size="14" hint-size="14px,14px"></x-import>We send a one-time code. Your email stays private.</div>
+              <div style="flex:1"></div>
+              <button onClick="{{ obNext }}" style="height:52px;border:0;border-radius:40px;background:linear-gradient(90deg,#a24688,#4e3aba);color:#fff;font-size:16px;font-weight:600;cursor:pointer">Verify and continue</button>
+              <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Button" variant="ghost" onClick="{{ obNext }}" style="width:100%;height:44px;margin-bottom:12px" hint-size="100%,44px">Skip for now</x-import>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <div style="padding:58px 16px 10px;display:flex;align-items:center;gap:10px;background:{{ tint }};transition:background .5s">
+        <div style="flex:1;display:flex;flex-direction:column;gap:1px">
+          <div style="font-size:12px;font-weight:600;color:{{ accent }};display:flex;align-items:center;gap:6px;transition:color .5s"><span style="width:7px;height:7px;border-radius:9px;background:{{ accent }}"></span>{{ spaceName }}</div>
+          <div style="font-size:26px;font-weight:800;letter-spacing:-0.025em">{{ title }}</div>
+        </div>
+        <button onClick="{{ openDiscover }}" aria-label="Search" style="border:0;background:#fff;width:40px;height:40px;border-radius:96px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#0f172a;box-shadow:0 1px 2px rgba(15,23,42,.08)"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconSearch" size="19" hint-size="19px,19px"></x-import></button>
+        <button onClick="{{ openNotifs }}" aria-label="Notifications" style="position:relative;border:0;background:#fff;width:40px;height:40px;border-radius:96px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#0f172a;box-shadow:0 1px 2px rgba(15,23,42,.08)">
+          <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconBell" size="19" hint-size="19px,19px"></x-import>
+          <sc-if value="{{ hasNotifs }}"><span style="position:absolute;top:-2px;right:-2px;min-width:18px;height:18px;padding:0 5px;border-radius:40px;background:{{ grad }};color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #fff">4</span></sc-if>
+        </button>
+      </div>
+
+      <div style="flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:110px">
+
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div style="background:{{ tint }};transition:background .5s;padding:6px 0 18px;border-radius:0 0 24px 24px">
+            <div style="display:flex;gap:10px;overflow-x:auto;padding:0 16px">
+              <button onClick="{{ openCompose }}" style="flex:none;width:96px;height:150px;border:0;padding:0;border-radius:16px;overflow:hidden;position:relative;cursor:pointer;background:#fff;box-shadow:0 1px 2px rgba(15,23,42,.08)">
+                <img src="{{ meSrc }}" style="width:100%;height:96px;object-fit:cover;display:block">
+                <div style="position:absolute;left:50%;top:80px;transform:translateX(-50%);width:32px;height:32px;border-radius:96px;background:{{ grad }};color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px #fff"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconPlus" size="18" hint-size="18px,18px"></x-import></div>
+                <div style="position:absolute;bottom:10px;left:0;right:0;font-size:12px;font-weight:600;color:#0f172a">{{ myStoryLabel }}</div>
+              </button>
+              <sc-for list="{{ stories }}" as="st" hint-placeholder-count="4">
+                <button onClick="{{ st.onClick }}" style="flex:none;width:96px;height:150px;border:0;padding:0;border-radius:16px;overflow:hidden;position:relative;cursor:pointer;background:#0f172a">
+                  <img src="{{ st.cover }}" style="width:100%;height:100%;object-fit:cover;display:block;opacity:{{ st.op }}">
+                  <div style="position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(15,23,42,.75))"></div>
+                  <div style="position:absolute;top:8px;left:8px;width:36px;height:36px;border-radius:96px;padding:2px;background:{{ st.ring }}"><img src="{{ st.src }}" style="width:100%;height:100%;border-radius:96px;object-fit:cover;box-shadow:0 0 0 2px #fff"></div>
+                  <div style="position:absolute;bottom:9px;left:9px;right:9px;font-size:12px;font-weight:600;color:#fff;text-align:left">{{ st.first }}</div>
+                </button>
+              </sc-for>
+            </div>
+            <button onClick="{{ openCompose }}" style="margin:14px 16px 0;width:calc(100% - 32px);border:0;background:#fff;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 8px;border-radius:40px;cursor:pointer;text-align:left;box-shadow:0 1px 2px rgba(15,23,42,.08)">
+              <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Avatar" src="{{ meSrc }}" size="{{ 34 }}" hint-size="34px,34px"></x-import>
+              <div style="flex:1;font-size:14px;color:#64748b">{{ composePrompt }}</div>
+              <div style="width:34px;height:34px;border-radius:96px;background:{{ soft }};color:{{ accent }};display:flex;align-items:center;justify-content:center"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconImage" size="17" hint-size="17px,17px"></x-import></div>
+            </button>
+          </div>
+
+          <sc-if value="{{ isW }}">
+            <div style="margin:16px 16px 0;padding:16px;border-radius:18px;background:linear-gradient(135deg,#a24688,#4e3aba);color:#fff;display:flex;gap:12px;align-items:center">
+              <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Avatar" src="https://randomuser.me/api/portraits/women/79.jpg" size="{{ 44 }}" hint-size="44px,44px"></x-import>
+              <div style="flex:1;min-width:0"><div style="font-size:12px;opacity:.8;font-weight:500">New endorsement</div><div style="font-size:14px;font-weight:600;line-height:1.35">Aisha Bello vouched for your Prototyping</div></div>
+              <button onClick="{{ endorseBack }}" style="border:0;background:#fff;color:#4e3aba;height:34px;padding:0 12px;border-radius:40px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">{{ endorseLabel }}</button>
+            </div>
+          </sc-if>
+
+          <sc-for list="{{ posts }}" as="p" hint-placeholder-count="2">
+            <div style="padding:18px 16px 4px;display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;gap:10px;align-items:center">
+                <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Avatar" src="{{ p.src }}" initials="{{ p.initials }}" size="{{ 42 }}" hint-size="42px,42px"></x-import>
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+                  <div style="display:flex;align-items:center;gap:4px;font-size:14px;font-weight:600">{{ p.author }}<sc-if value="{{ p.verified }}"><span style="color:#4e3aba;display:flex"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconShieldCheck" size="15" hint-size="15px,15px"></x-import></span></sc-if></div>
+                  <div style="font-size:12px;color:#64748b;display:flex;gap:4px;align-items:center;white-space:nowrap;overflow:hidden"><span style="overflow:hidden;text-overflow:ellipsis">{{ p.meta }}</span><span>·</span><span>{{ p.time }}</span></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;height:24px;padding:0 8px;border-radius:40px;background:{{ p.audBg }};color:{{ p.audFg }};font-size:11px;font-weight:600"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ p.audIcon }}" size="11" hint-size="11px,11px"></x-import>{{ p.aud }}</div>
+              </div>
+              <sc-if value="{{ p.text }}"><div style="font-size:15px;line-height:1.5;text-wrap:pretty">{{ p.text }}</div></sc-if>
+              <sc-if value="{{ p.img }}"><div onDoubleClick="{{ p.onLike }}" style="position:relative;border-radius:18px;overflow:hidden"><img src="{{ p.img }}" style="width:100%;height:{{ p.imgH }};object-fit:cover;display:block"></div></sc-if>
+              <sc-if value="{{ p.album }}">
+                <div style="display:grid;grid-template-columns:2fr 1fr;grid-template-rows:130px 130px;gap:4px;border-radius:18px;overflow:hidden">
+                  <img src="assets/p1015.jpg" style="width:100%;height:100%;object-fit:cover;grid-row:span 2">
+                  <img src="assets/p1011.jpg" style="width:100%;height:100%;object-fit:cover">
+                  <div style="position:relative"><img src="assets/p1039.jpg" style="width:100%;height:100%;object-fit:cover;display:block"><div style="position:absolute;inset:0;background:rgba(15,23,42,.55);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700">+11</div></div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ p.job }}">
+                <div style="border-radius:18px;overflow:hidden;box-shadow:inset 0 0 0 1px #e2e8f0">
+                  <div style="height:120px;position:relative"><img src="assets/p1.jpg" style="width:100%;height:100%;object-fit:cover;display:block"><div style="position:absolute;inset:0;background:linear-gradient(transparent,rgba(78,58,186,.7))"></div><div style="position:absolute;left:14px;bottom:12px;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconUsers" size="13" hint-size="13px,13px"></x-import>Priya can refer you</div></div>
+                  <div style="display:flex;gap:12px;align-items:center;padding:12px 14px">
+                    <div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:600">{{ p.jobTitle }}</div><div style="font-size:12px;color:#64748b">{{ p.jobCo }}</div></div>
+                    <button onClick="{{ goJobs }}" style="border:0;height:36px;padding:0 14px;border-radius:40px;background:linear-gradient(90deg,#a24688,#4e3aba);color:#fff;font-size:13px;font-weight:600;cursor:pointer">See role</button>
+                  </div>
+                </div>
+              </sc-if>
+              <div style="display:flex;align-items:center;gap:2px;margin:0 -8px">
+                <button onClick="{{ p.onLike }}" style="border:0;background:{{ p.likeBg }};cursor:pointer;display:flex;align-items:center;gap:6px;height:36px;padding:0 12px;border-radius:40px;font-size:13px;font-weight:600;color:{{ p.likeColor }};transition:all .15s"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ p.likeIcon }}" size="18" hint-size="18px,18px"></x-import>{{ p.likeCount }}</button>
+                <button style="border:0;background:none;cursor:pointer;display:flex;align-items:center;gap:6px;height:36px;padding:0 10px;border-radius:40px;font-size:13px;font-weight:500;color:#475569" style-hover="background:#f1f5f9"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconMessageCircle" size="18" hint-size="18px,18px"></x-import>{{ p.comments }}</button>
+                <button onClick="{{ p.onSend }}" style="border:0;background:none;cursor:pointer;display:flex;align-items:center;gap:6px;height:36px;padding:0 10px;border-radius:40px;font-size:13px;font-weight:500;color:#475569" style-hover="background:#f1f5f9"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconSend" size="18" hint-size="18px,18px"></x-import>Send</button>
+                <div style="flex:1"></div>
+                <button onClick="{{ p.onSave }}" aria-label="Save" style="border:0;background:none;cursor:pointer;display:flex;align-items:center;height:36px;padding:0 10px;border-radius:40px;color:{{ p.saveColor }}" style-hover="background:#f1f5f9"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconBookmark" size="18" hint-size="18px,18px"></x-import></button>
+              </div>
+              <div style="height:1px;background:#f1f5f9;margin-top:6px"></div>
+            </div>
+          </sc-for>
+        </sc-if>
+
+        <sc-if value="{{ isChats }}">
+          <div style="background:{{ tint }};transition:background .5s;padding:4px 16px 16px;border-radius:0 0 24px 24px;display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;padding:4px;background:rgba(255,255,255,.7);border-radius:40px">
+              <button onClick="{{ chatTabChats }}" style="flex:1;border:0;cursor:pointer;height:34px;border-radius:40px;font-size:14px;font-weight:600;background:{{ ctChatsBg }};color:{{ ctChatsFg }}">Chats</button>
+              <button onClick="{{ chatTabCalls }}" style="flex:1;border:0;cursor:pointer;height:34px;border-radius:40px;font-size:14px;font-weight:600;background:{{ ctCallsBg }};color:{{ ctCallsFg }}">Calls</button>
+            </div>
+            <div style="display:flex;gap:14px;overflow-x:auto">
+              <sc-for list="{{ activeNow }}" as="an" hint-placeholder-count="5">
+                <button onClick="{{ an.onClick }}" style="flex:none;border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;width:58px">
+                  <div style="position:relative;width:56px;height:56px"><img src="{{ an.src }}" style="width:56px;height:56px;border-radius:96px;object-fit:cover"><span style="position:absolute;right:1px;bottom:1px;width:14px;height:14px;border-radius:9px;background:{{ accent }};box-shadow:0 0 0 3px {{ tint }}"></span></div>
+                  <div style="font-size:11px;font-weight:600">{{ an.first }}</div>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+          <sc-if value="{{ showChatList }}">
+            <div style="padding:14px 16px 6px;font-size:12px;color:#64748b;display:flex;align-items:center;gap:6px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconLock" size="12" hint-size="12px,12px"></x-import>{{ chatScopeNote }}</div>
+            <sc-for list="{{ chats }}" as="c" hint-placeholder-count="5">
+              <button onClick="{{ c.onClick }}" style="width:100%;border:0;background:#fff;display:flex;gap:12px;align-items:center;padding:9px 16px;cursor:pointer;text-align:left" style-hover="background:#f8fafc">
+                <sc-if value="{{ c.src }}"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Avatar" src="{{ c.src }}" size="{{ 52 }}" hint-size="52px,52px"></x-import></sc-if>
+                <sc-if value="{{ c.tile }}"><div style="width:52px;height:52px;flex:none;border-radius:16px;overflow:hidden"><img src="{{ c.cover }}" style="width:100%;height:100%;object-fit:cover"></div></sc-if>
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
+                  <div style="display:flex;align-items:center;gap:6px"><div style="flex:1;font-size:15px;font-weight:600;display:flex;align-items:center;gap:4px;min-width:0">{{ c.name }}<sc-if value="{{ c.verified }}"><span style="color:#4e3aba;display:flex"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconShieldCheck" size="14" hint-size="14px,14px"></x-import></span></sc-if></div><div style="font-size:12px;color:{{ c.timeColor }};font-weight:500">{{ c.time }}</div></div>
+                  <div style="display:flex;align-items:center;gap:8px"><div style="flex:1;font-size:14px;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.last }}</div><sc-if value="{{ c.unread }}"><div style="min-width:22px;height:22px;padding:0 7px;border-radius:40px;background:{{ grad }};color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ c.unread }}</div></sc-if></div>
+                </div>
+              </button>
+            </sc-for>
+          </sc-if>
+          <sc-if value="{{ showCalls }}">
+            <div style="height:10px"></div>
+            <sc-for list="{{ calls }}" as="cl" hint-placeholder-count="4">
+              <div style="display:flex;gap:12px;align-items:center;padding:9px 16px">
+                <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Avatar" src="{{ cl.src }}" initials="{{ cl.i }}" size="{{ 48 }}" hint-size="48px,48px"></x-import>
+                <div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:600;color:{{ cl.nameColor }}">{{ cl.name }}</div><div style="font-size:13px;color:#64748b;display:flex;align-items:center;gap:5px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ cl.icon }}" size="13" hint-size="13px,13px"></x-import>{{ cl.time }}</div></div>
+                <button onClick="{{ cl.onCall }}" aria-label="Call" style="width:42px;height:42px;border:0;border-radius:96px;background:{{ soft }};color:{{ accent }};display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ cl.callIcon }}" size="18" hint-size="18px,18px"></x-import></button>
+              </div>
+            </sc-for>
+          </sc-if>
+        </sc-if>
+
+        <sc-if value="{{ isGroups }}">
+          <div style="padding:6px 16px 0;display:flex;flex-direction:column;gap:14px">
+            <sc-for list="{{ groupList }}" as="g" hint-placeholder-count="3">
+              <button onClick="{{ g.onClick }}" style="border:0;padding:0;background:#0f172a;border-radius:20px;overflow:hidden;position:relative;height:168px;cursor:pointer;text-align:left;width:100%">
+                <img src="{{ g.cover }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,.05) 20%,rgba(15,23,42,.8))"></div>
+                <div style="position:absolute;top:12px;left:12px;height:24px;padding:0 9px;border-radius:40px;background:rgba(255,255,255,.92);font-size:11px;font-weight:600;color:#0f172a;display:flex;align-items:center;gap:4px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ g.privIcon }}" size="11" hint-size="11px,11px"></x-import>{{ g.privacy }}</div>
+                <sc-if value="{{ g.unread }}"><div style="position:absolute;top:12px;right:12px;height:24px;padding:0 9px;border-radius:40px;background:#db4e66;font-size:11px;font-weight:700;color:#fff;display:flex;align-items:center">{{ g.unread }} new</div></sc-if>
+                <div style="position:absolute;left:14px;right:14px;bottom:12px;display:flex;align-items:flex-end;gap:10px;color:#fff">
+                  <div style="flex:1;min-width:0"><div style="font-size:18px;font-weight:700;letter-spacing:-0.01em">{{ g.name }}</div><div style="font-size:12px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ g.activity }}</div></div>
+                  <div style="display:flex">
+                    <sc-for list="{{ g.faces }}" as="fc"><img src="{{ fc }}" style="width:26px;height:26px;border-radius:96px;object-fit:cover;box-shadow:0 0 0 2px #0f172a;margin-left:-8px"></sc-for>
+                  </div>
+                </div>
+              </button>
+            </sc-for>
+            <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Button" variant="outline" onClick="{{ newGroup }}" style="height:44px" hint-size="100%,44px">Create a group</x-import>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isJobs }}">
+          <div style="display:flex;gap:6px;padding:4px 16px 14px;overflow-x:auto">
+            <sc-for list="{{ jobFilters }}" as="jf" hint-placeholder-count="4">
+              <button onClick="{{ jf.onClick }}" style="flex:none;border:0;cursor:pointer;height:34px;padding:0 14px;border-radius:40px;font-size:13px;font-weight:600;background:{{ jf.bg }};color:{{ jf.fg }};box-shadow:inset 0 0 0 1px {{ jf.bd }}">{{ jf.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ hasJob }}">
+            <div style="position:relative;height:440px;margin:0 16px">
+              <sc-if value="{{ hasJob3 }}"><div style="position:absolute;inset:0 18px;top:22px;border-radius:24px;background:#e4e0f7"></div></sc-if>
+              <sc-if value="{{ hasJob2 }}"><div style="position:absolute;inset:0 9px;top:11px;border-radius:24px;background:#c9c2ef"></div></sc-if>
+              <div style="position:absolute;inset:0;bottom:22px;border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(78,58,186,.18),inset 0 0 0 1px #e2e8f0;transform:{{ jobTransform }};opacity:{{ jobOpacity }};transition:transform .28s ease,opacity .28s ease;display:flex;flex-direction:column">
+                <div style="height:190px;position:relative;flex:none"><img src="{{ job.cover }}" style="width:100%;height:100%;object-fit:cover;display:block"><div style="position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(15,23,42,.6))"></div>
+                  <div style="position:absolute;top:12px;left:12px;height:26px;padding:0 10px;border-radius:40px;background:#fff;font-size:12px;font-weight:700;color:#4e3aba;display:flex;align-items:center">{{ job.type }}</div>
+                  <div style="position:absolute;top:12px;right:12px;height:26px;padding:0 10px;border-radius:40px;background:rgba(15,23,42,.6);font-size:12px;font-weight:600;color:#fff;display:flex;align-items:center">{{ jobCounter }}</div>
+                  <div style="position:absolute;left:14px;bottom:-22px;width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#a24688,#4e3aba);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #fff">{{ job.i }}</div>
+                </div>
+                <div style="padding:32px 16px 14px;display:flex;flex-direction:column;gap:10px;flex:1">
+                  <div><div style="font-size:20px;font-weight:700;letter-spacing:-0.015em">{{ job.title }}</div><div style="font-size:14px;color:#475569">{{ job.co }} · {{ job.loc }}</div></div>
+                  <div style="font-size:15px;font-weight:700;color:#4e3aba">{{ job.pay }}</div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ job.tags }}" as="tg"><span style="height:26px;padding:0 10px;border-radius:40px;background:#f1effc;color:#4e3aba;font-size:12px;font-weight:600;display:flex;align-items:center">{{ tg }}</span></sc-for></div>
+                  <div style="flex:1"></div>
+                  <sc-if value="{{ job.ref }}"><div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#334155;font-weight:500"><img src="{{ job.refSrc }}" style="width:24px;height:24px;border-radius:96px;object-fit:cover">{{ job.ref }}</div></sc-if>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center;align-items:center;gap:18px;padding:6px 0 4px">
+              <button onClick="{{ jobSkip }}" aria-label="Skip" style="width:56px;height:56px;border:0;border-radius:96px;background:#fff;color:#64748b;box-shadow:0 2px 8px rgba(15,23,42,.12);display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconX" size="24" hint-size="24px,24px"></x-import></button>
+              <button onClick="{{ jobApply }}" style="height:64px;padding:0 28px;border:0;border-radius:40px;background:linear-gradient(90deg,#a24688,#4e3aba);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 8px 20px rgba(78,58,186,.35)"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconSend" size="18" hint-size="18px,18px"></x-import>{{ applyLabel }}</button>
+              <button onClick="{{ jobSave }}" aria-label="Save" style="width:56px;height:56px;border:0;border-radius:96px;background:#fff;color:#4e3aba;box-shadow:0 2px 8px rgba(15,23,42,.12);display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconBookmark" size="22" hint-size="22px,22px"></x-import></button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ noJobs }}">
+            <div style="margin:0 16px;padding:40px 24px;border-radius:24px;background:#f1effc;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center">
+              <div style="font-size:18px;font-weight:700">You're all caught up</div>
+              <div style="font-size:14px;color:#475569">{{ appliedSummary }}</div>
+              <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Button" variant="outline" onClick="{{ jobReset }}" hint-size="120px,40px">Start over</x-import>
+            </div>
+          </sc-if>
+          <div style="padding:22px 16px 8px;display:flex;align-items:baseline;justify-content:space-between"><div style="font-size:16px;font-weight:700">Mentors open to requests</div><div style="font-size:12px;color:#64748b">Free · 30 min</div></div>
+          <div style="display:flex;gap:10px;overflow-x:auto;padding:0 16px 8px">
+            <sc-for list="{{ mentors }}" as="mt" hint-placeholder-count="3">
+              <div style="flex:none;width:150px;border-radius:18px;overflow:hidden;position:relative;height:200px;background:#0f172a">
+                <img src="{{ mt.src }}" style="width:100%;height:100%;object-fit:cover;display:block">
+                <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(78,58,186,.9))"></div>
+                <div style="position:absolute;left:10px;right:10px;bottom:10px;display:flex;flex-direction:column;gap:8px;color:#fff">
+                  <div><div style="font-size:14px;font-weight:700">{{ mt.name }}</div><div style="font-size:11px;opacity:.85">{{ mt.topic }}</div></div>
+                  <button onClick="{{ mt.onClick }}" style="border:0;height:32px;border-radius:40px;background:{{ mt.bg }};color:{{ mt.fg }};font-size:12px;font-weight:700;cursor:pointer">{{ mt.label }}</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isProfile }}">
+          <div style="padding:6px 16px 0">
+            <div style="perspective:1400px;height:330px">
+              <div style="position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,.7,.2,1);transform:{{ flip }}">
+                <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(219,78,102,.18),inset 0 0 0 1px #fce7eb">
+                  <div style="height:130px;position:relative"><img src="assets/p1015.jpg" style="width:100%;height:100%;object-fit:cover;display:block"><div style="position:absolute;inset:0;background:linear-gradient(transparent,rgba(219,78,102,.45))"></div></div>
+                  <div style="padding:0 18px;margin-top:-42px;position:relative;display:flex;flex-direction:column;gap:10px">
+                    <img src="{{ meSrc }}" style="width:84px;height:84px;border-radius:96px;object-fit:cover;box-shadow:0 0 0 4px #fff">
+                    <div><div style="font-size:22px;font-weight:800;letter-spacing:-0.02em">{{ meName }}</div><div style="font-size:14px;color:#475569">Oakland · climbing, coffee, houseplants</div></div>
+                    <div style="display:flex;gap:18px;font-size:13px;color:#64748b"><div><b style="color:#0f172a">342</b> friends</div><div><b style="color:#0f172a">4</b> groups</div><div><b style="color:#0f172a">86</b> photos</div></div>
+                  </div>
+                  <div style="position:absolute;top:12px;right:12px;height:26px;padding:0 10px;border-radius:40px;background:#fff;color:#db4e66;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconHeart" size="12" hint-size="12px,12px"></x-import>Friends see</div>
+                </div>
+                <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);border-radius:24px;overflow:hidden;background:linear-gradient(150deg,#a24688 0%,#4e3aba 70%);color:#fff;box-shadow:0 10px 30px rgba(78,58,186,.3)">
+                  <div style="padding:22px 18px;display:flex;flex-direction:column;gap:12px;height:100%">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                      <img src="{{ meSrc }}" style="width:76px;height:76px;border-radius:20px;object-fit:cover;box-shadow:0 0 0 3px rgba(255,255,255,.5)">
+                      <div style="height:26px;padding:0 10px;border-radius:40px;background:#fff;color:#4e3aba;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconBriefcase" size="12" hint-size="12px,12px"></x-import>Colleagues see</div>
+                    </div>
+                    <div><div style="font-size:22px;font-weight:800;letter-spacing:-0.02em;display:flex;align-items:center;gap:6px">{{ meName }}<x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconShieldCheck" size="18" hint-size="18px,18px"></x-import></div><div style="font-size:14px;opacity:.9">{{ meRole }} at {{ meCompany }}</div></div>
+                    <div style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;background:rgba(255,255,255,.16);border-radius:40px;height:28px;padding:0 10px;align-self:flex-start"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconShieldCheck" size="13" hint-size="13px,13px"></x-import>Verified at {{ meCompany }}</div>
+                    <div style="flex:1"></div>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+                      <div style="background:rgba(255,255,255,.14);border-radius:14px;padding:10px"><div style="font-size:20px;font-weight:800">518</div><div style="font-size:11px;opacity:.85">connections</div></div>
+                      <div style="background:rgba(255,255,255,.14);border-radius:14px;padding:10px"><div style="font-size:20px;font-weight:800">112</div><div style="font-size:11px;opacity:.85">endorsements</div></div>
+                      <div style="background:rgba(255,255,255,.14);border-radius:14px;padding:10px"><div style="font-size:20px;font-weight:800">3</div><div style="font-size:11px;opacity:.85">mentees</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;padding:4px;background:#f1f5f9;border-radius:40px;margin-top:14px">
+              <button onClick="{{ viewAsFriends }}" style="flex:1;border:0;cursor:pointer;height:36px;border-radius:40px;font-size:14px;font-weight:600;background:{{ vfBg }};color:{{ vfFg }};transition:all .3s">As friends see it</button>
+              <button onClick="{{ viewAsColleagues }}" style="flex:1;border:0;cursor:pointer;height:36px;border-radius:40px;font-size:14px;font-weight:600;background:{{ vcBg }};color:{{ vcFg }};transition:all .3s">As colleagues see it</button>
+            </div>
+          </div>
+          <sc-if value="{{ viewFriends }}">
+            <div style="padding:18px 16px 0;display:flex;flex-direction:column;gap:10px">
+              <div style="font-size:16px;font-weight:700">Photos</div>
+              <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;border-radius:16px;overflow:hidden">
+                <sc-for list="{{ photos }}" as="ph" hint-placeholder-count="6"><img src="{{ ph }}" style="width:100%;aspect-ratio:1;object-fit:cover;display:block"></sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ viewColleagues }}">
+            <div style="padding:18px 16px 0;display:flex;flex-direction:column;gap:20px">
+              <div style="display:flex;gap:10px;align-items:center;padding:14px;border-radius:18px;background:#f1effc">
+                <div style="flex:1"><div style="font-size:14px;font-weight:600">Open to mentoring</div><div style="font-size:12px;color:#475569">People can request a 30 min session</div></div>
+                <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Switch" label=" " checked="{{ mentorOpen }}" onChange="{{ onMentor }}" hint-size="44px,24px"></x-import>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div style="font-size:16px;font-weight:700">Skills</div>
+                <sc-for list="{{ skills }}" as="sk" hint-placeholder-count="4">
+                  <div style="display:flex;flex-direction:column;gap:6px">
+                    <div style="display:flex;align-items:baseline;gap:8px"><div style="flex:1;font-size:14px;font-weight:600">{{ sk.name }}</div><div style="font-size:13px;font-weight:700;color:#4e3aba">{{ sk.n }}</div></div>
+                    <div style="height:6px;border-radius:40px;background:#f1effc;overflow:hidden"><div style="height:100%;width:{{ sk.w }};border-radius:40px;background:linear-gradient(90deg,#a24688,#4e3aba)"></div></div>
+                    <div style="font-size:12px;color:#64748b">{{ sk.by }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="font-size:16px;font-weight:700">Portfolio</div>
+                <div style="display:flex;gap:10px;overflow-x:auto;margin:0 -16px;padding:0 16px">
+                  <sc-for list="{{ portfolio }}" as="pf" hint-placeholder-count="3">
+                    <div style="flex:none;width:200px;display:flex;flex-direction:column;gap:6px"><img src="{{ pf.img }}" style="width:200px;height:140px;object-fit:cover;border-radius:16px"><div style="font-size:13px;font-weight:600">{{ pf.t }}</div></div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div style="font-size:16px;font-weight:700">Experience</div>
+                <sc-for list="{{ experience }}" as="ex" hint-placeholder-count="2">
+                  <div style="display:flex;gap:12px;align-items:center"><div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#a24688,#4e3aba);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center">{{ ex.i }}</div><div><div style="font-size:14px;font-weight:600">{{ ex.r }}</div><div style="font-size:13px;color:#64748b">{{ ex.c }} · {{ ex.d }}</div></div></div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <div style="margin:20px 16px 0;padding:14px;border-radius:18px;background:{{ hiddenBg }};display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45;color:#334155">
+            <span style="color:{{ hiddenFg }};display:flex"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconEyeOff" size="16" hint-size="16px,16px"></x-import></span><div>{{ hiddenNote }}</div>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="position:absolute;left:14px;right:14px;bottom:26px;height:68px;border-radius:40px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(15,23,42,.14),inset 0 0 0 1px #e2e8f0;display:flex;align-items:center;padding:0 8px;z-index:2">
+        <sc-for list="{{ tabsL }}" as="t" hint-placeholder-count="2">
+          <button onClick="{{ t.onClick }}" style="flex:1;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;color:{{ t.color }};position:relative;height:56px;justify-content:center">
+            <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ t.icon }}" size="22" hint-size="22px,22px"></x-import>
+            <span style="font-size:10px;font-weight:{{ t.weight }}">{{ t.label }}</span>
+            <sc-if value="{{ t.badge }}"><span style="position:absolute;top:4px;left:calc(50% + 6px);min-width:17px;height:17px;padding:0 4px;border-radius:40px;background:{{ grad }};color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ t.badge }}</span></sc-if>
+          </button>
+        </sc-for>
+        <button onClick="{{ toggleMode }}" aria-label="Switch space" style="flex:none;width:62px;height:62px;margin-top:-26px;border:0;border-radius:96px;background:{{ grad }};color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;box-shadow:0 8px 20px {{ orbShadow }},0 0 0 5px #fff;transition:box-shadow .4s">
+          <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ orbIcon }}" size="22" hint-size="22px,22px"></x-import>
+          <span style="font-size:9px;font-weight:700;letter-spacing:.04em">{{ orbLabel }}</span>
+        </button>
+        <sc-for list="{{ tabsR }}" as="t" hint-placeholder-count="2">
+          <button onClick="{{ t.onClick }}" style="flex:1;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;color:{{ t.color }};height:56px;justify-content:center">
+            <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ t.icon }}" size="22" hint-size="22px,22px"></x-import>
+            <span style="font-size:10px;font-weight:{{ t.weight }}">{{ t.label }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ ovThread }}">
+        <div style="position:absolute;inset:0;z-index:4;background:#fff;display:flex;flex-direction:column">
+          <sc-if value="{{ isGroupOv }}">
+            <div style="height:200px;position:relative;flex:none">
+              <img src="{{ grp.cover }}" style="width:100%;height:100%;object-fit:cover;display:block">
+              <div style="position:absolute;inset:0;background:linear-gradient(rgba(15,23,42,.35),rgba(15,23,42,.1) 40%,rgba(15,23,42,.8))"></div>
+              <button onClick="{{ closeOverlay }}" aria-label="Back" style="position:absolute;top:56px;left:12px;width:38px;height:38px;border:0;border-radius:96px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#0f172a"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconChevronLeft" size="20" hint-size="20px,20px"></x-import></button>
+              <button onClick="{{ thCall }}" aria-label="Group call" style="position:absolute;top:56px;right:12px;width:38px;height:38px;border:0;border-radius:96px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#0f172a"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconVideo" size="18" hint-size="18px,18px"></x-import></button>
+              <div style="position:absolute;left:16px;right:16px;bottom:14px;color:#fff"><div style="font-size:22px;font-weight:800;letter-spacing:-0.02em">{{ grp.name }}</div><div style="font-size:13px;opacity:.9">{{ grp.members }} · {{ grp.privacy }}</div></div>
+            </div>
+            <div style="padding:12px 16px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid #f1f5f9">
+              <div style="font-size:13px;line-height:1.45;color:#475569">{{ grp.desc }}</div>
+              <div style="display:flex;padding:4px;background:#f1f5f9;border-radius:40px">
+                <button onClick="{{ gTabChat }}" style="flex:1;border:0;cursor:pointer;height:32px;border-radius:40px;font-size:14px;font-weight:600;background:{{ gcBg }};color:{{ gcFg }}">Chat</button>
+                <button onClick="{{ gTabPosts }}" style="flex:1;border:0;cursor:pointer;height:32px;border-radius:40px;font-size:14px;font-weight:600;background:{{ gpBg }};color:{{ gpFg }}">Posts</button>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isDmOv }}">
+            <div style="padding:54px 10px 10px;display:flex;align-items:center;gap:8px;background:#fff;box-shadow:0 1px 0 #f1f5f9">
+              <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Button" variant="ghost" onClick="{{ closeOverlay }}" aria-label="Back" hint-size="40px,40px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconChevronLeft" size="22" hint-size="22px,22px"></x-import></x-import>
+              <div style="position:relative"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Avatar" src="{{ th.src }}" size="{{ 40 }}" hint-size="40px,40px"></x-import><span style="position:absolute;right:0;bottom:0;width:11px;height:11px;border-radius:9px;background:{{ thAccent }};box-shadow:0 0 0 2px #fff"></span></div>
+              <div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:700;display:flex;align-items:center;gap:4px">{{ th.name }}<sc-if value="{{ th.verified }}"><span style="color:#4e3aba;display:flex"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconShieldCheck" size="14" hint-size="14px,14px"></x-import></span></sc-if></div><div style="font-size:12px;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ thSub }}</div></div>
+              <button onClick="{{ thVideo }}" aria-label="Video call" style="width:40px;height:40px;border:0;border-radius:96px;background:{{ thSoft }};color:{{ thAccent }};display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconVideo" size="19" hint-size="19px,19px"></x-import></button>
+              <button onClick="{{ thCall }}" aria-label="Call" style="width:40px;height:40px;border:0;border-radius:96px;background:{{ thSoft }};color:{{ thAccent }};display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconPhone" size="18" hint-size="18px,18px"></x-import></button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ showGroupPosts }}">
+            <div style="flex:1;overflow-y:auto;padding:6px 0">
+              <sc-for list="{{ grpPosts }}" as="gp" hint-placeholder-count="2">
+                <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid #f1f5f9">
+                  <div style="display:flex;gap:10px;align-items:center"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Avatar" src="{{ gp.src }}" size="{{ 36 }}" hint-size="36px,36px"></x-import><div style="flex:1"><div style="font-size:14px;font-weight:600">{{ gp.a }}</div><div style="font-size:12px;color:#64748b">{{ gp.time }}</div></div></div>
+                  <div style="font-size:15px;line-height:1.5">{{ gp.t }}</div>
+                  <sc-if value="{{ gp.img }}"><img src="{{ gp.img }}" style="width:100%;height:200px;object-fit:cover;border-radius:16px"></sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ showThreadMsgs }}">
+            <div ref="{{ threadRef }}" style="flex:1;overflow-y:auto;background:{{ thTint }};padding:14px 12px;display:flex;flex-direction:column;gap:6px">
+              <div style="align-self:center;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:{{ thAccent }};background:#fff;border-radius:40px;padding:5px 11px;margin-bottom:8px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ spaceIcon }}" size="12" hint-size="12px,12px"></x-import>{{ spaceNote }}</div>
+              <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="3">
+                <sc-if value="{{ m.mine }}">
+                  <div style="align-self:flex-end;max-width:78%;background:{{ thGrad }};color:#fff;border-radius:20px 20px 6px 20px;padding:9px 13px;font-size:15px;line-height:1.4;box-shadow:0 2px 6px {{ orbShadow }}">{{ m.t }}<div style="font-size:10px;opacity:.75;text-align:right;margin-top:2px;display:flex;gap:3px;justify-content:flex-end;align-items:center">{{ m.at }}<x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconCheckCheck" size="12" hint-size="12px,12px"></x-import></div></div>
+                </sc-if>
+                <sc-if value="{{ m.theirs }}">
+                  <div style="align-self:flex-start;display:flex;gap:6px;align-items:flex-end;max-width:84%">
+                    <sc-if value="{{ m.whoSrc }}"><img src="{{ m.whoSrc }}" style="width:26px;height:26px;border-radius:96px;object-fit:cover;flex:none"></sc-if>
+                    <div style="background:#fff;border-radius:20px 20px 20px 6px;padding:9px 13px;font-size:15px;line-height:1.4;box-shadow:0 1px 2px rgba(15,23,42,.06)"><sc-if value="{{ m.who }}"><div style="font-size:12px;font-weight:700;color:{{ thAccent }};margin-bottom:2px">{{ m.who }}</div></sc-if><sc-if value="{{ m.img }}"><img src="{{ m.img }}" style="width:210px;height:150px;object-fit:cover;border-radius:14px;display:block;margin:2px 0 4px"></sc-if>{{ m.t }}<div style="font-size:10px;color:#94a3b8;text-align:right;margin-top:2px">{{ m.at }}</div></div>
+                  </div>
+                </sc-if>
+              </sc-for>
+              <sc-if value="{{ typing }}"><div style="align-self:flex-start;background:#fff;border-radius:20px;padding:9px 14px;font-size:13px;color:#64748b">typing…</div></sc-if>
+            </div>
+            <div style="padding:8px 10px 34px;display:flex;align-items:center;gap:8px;background:#fff">
+              <button aria-label="Attach" style="width:40px;height:40px;border:0;border-radius:96px;background:#f1f5f9;color:#475569;display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconPlus" size="20" hint-size="20px,20px"></x-import></button>
+              <input value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onDraftKey }}" placeholder="Message" style="flex:1;height:42px;border:0;background:#f1f5f9;border-radius:40px;padding:0 16px;font-size:15px;outline:none;color:#0f172a">
+              <button onClick="{{ send }}" aria-label="Send" style="width:42px;height:42px;border:0;border-radius:96px;background:{{ thGrad }};color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ sendIcon }}" size="18" hint-size="18px,18px"></x-import></button>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ ovDiscover }}">
+        <div style="position:absolute;inset:0;z-index:4;background:#fff;display:flex;flex-direction:column">
+          <div style="padding:56px 16px 10px;display:flex;align-items:center;gap:10px">
+            <div style="flex:1;display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:40px;background:#f1f5f9;color:#64748b">
+              <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconSearch" size="17" hint-size="17px,17px"></x-import>
+              <input value="{{ query }}" onChange="{{ onQuery }}" placeholder="People, groups, jobs" style="flex:1;border:0;outline:none;font-size:15px;color:#0f172a;background:transparent">
+            </div>
+            <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Button" variant="ghost" onClick="{{ closeOverlay }}" hint-size="70px,40px">Cancel</x-import>
+          </div>
+          <div style="display:flex;gap:6px;padding:0 16px 10px">
+            <sc-for list="{{ searchCats }}" as="sc" hint-placeholder-count="3">
+              <button onClick="{{ sc.onClick }}" style="border:0;cursor:pointer;height:34px;padding:0 14px;border-radius:40px;font-size:13px;font-weight:600;background:{{ sc.bg }};color:{{ sc.fg }};box-shadow:inset 0 0 0 1px {{ sc.bd }}">{{ sc.label }}</button>
+            </sc-for>
+          </div>
+          <div style="flex:1;overflow-y:auto;padding-bottom:30px">
+            <div style="padding:8px 16px;font-size:12px;font-weight:600;color:#64748b">{{ resultsLabel }}</div>
+            <sc-if value="{{ catPeople }}">
+              <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0 16px">
+                <sc-for list="{{ people }}" as="pp" hint-placeholder-count="4">
+                  <div style="border-radius:20px;overflow:hidden;box-shadow:inset 0 0 0 1px #e2e8f0;display:flex;flex-direction:column">
+                    <img src="{{ pp.src }}" style="width:100%;height:130px;object-fit:cover;display:block">
+                    <div style="padding:10px;display:flex;flex-direction:column;gap:8px;flex:1">
+                      <div style="flex:1"><div style="font-size:14px;font-weight:700">{{ pp.name }}</div><div style="font-size:12px;color:#64748b;line-height:1.35">{{ pp.meta }}</div></div>
+                      <sc-if value="{{ pp.open }}">
+                        <div style="display:flex;gap:6px">
+                          <button onClick="{{ pp.onFriend }}" style="flex:1;border:0;height:32px;border-radius:40px;background:#fce7eb;color:#db4e66;font-size:12px;font-weight:700;cursor:pointer">Friend</button>
+                          <button onClick="{{ pp.onConnect }}" style="flex:1;border:0;height:32px;border-radius:40px;background:#e4e0f7;color:#4e3aba;font-size:12px;font-weight:700;cursor:pointer">Connect</button>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ pp.sent }}"><div style="height:32px;font-size:12px;font-weight:600;color:{{ pp.sentColor }};display:flex;align-items:center;gap:4px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconCheck" size="14" hint-size="14px,14px"></x-import>{{ pp.sent }}</div></sc-if>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ catGroups }}">
+              <sc-for list="{{ dGroups }}" as="dg" hint-placeholder-count="3">
+                <button onClick="{{ dg.onClick }}" style="width:100%;border:0;background:#fff;display:flex;gap:12px;align-items:center;padding:9px 16px;cursor:pointer;text-align:left" style-hover="background:#f8fafc">
+                  <img src="{{ dg.cover }}" style="width:56px;height:56px;border-radius:16px;object-fit:cover">
+                  <div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:600">{{ dg.name }}</div><div style="font-size:13px;color:#64748b">{{ dg.members }}</div></div>
+                  <span style="height:24px;padding:0 9px;border-radius:40px;background:{{ dg.bg }};color:{{ dg.fg }};font-size:11px;font-weight:700;display:flex;align-items:center">{{ dg.space }}</span>
+                </button>
+              </sc-for>
+            </sc-if>
+            <sc-if value="{{ catJobs }}">
+              <sc-for list="{{ dJobs }}" as="dj" hint-placeholder-count="3">
+                <button onClick="{{ goJobs }}" style="width:100%;border:0;background:#fff;display:flex;gap:12px;align-items:center;padding:9px 16px;cursor:pointer;text-align:left" style-hover="background:#f8fafc">
+                  <img src="{{ dj.cover }}" style="width:56px;height:56px;border-radius:16px;object-fit:cover">
+                  <div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:600">{{ dj.title }}</div><div style="font-size:13px;color:#64748b">{{ dj.co }} · {{ dj.pay }}</div></div>
+                </button>
+              </sc-for>
+            </sc-if>
+            <sc-if value="{{ noResults }}"><div style="padding:40px 16px;text-align:center;font-size:14px;color:#64748b">Nothing matches "{{ query }}"</div></sc-if>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ ovNotifs }}">
+        <div style="position:absolute;inset:0;z-index:4;background:#fff;display:flex;flex-direction:column">
+          <div style="padding:54px 10px 8px;display:flex;align-items:center;gap:8px">
+            <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Button" variant="ghost" onClick="{{ closeOverlay }}" aria-label="Back" hint-size="40px,40px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconChevronLeft" size="22" hint-size="22px,22px"></x-import></x-import>
+            <div style="flex:1;font-size:20px;font-weight:800;letter-spacing:-0.02em">Activity</div>
+          </div>
+          <div style="flex:1;overflow-y:auto;padding:4px 0 30px">
+            <sc-for list="{{ notifs }}" as="n" hint-placeholder-count="5">
+              <div style="display:flex;gap:12px;padding:12px 16px;margin:0 8px 4px;border-radius:18px;background:{{ n.bg }}">
+                <div style="position:relative;flex:none"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Avatar" src="{{ n.src }}" initials="{{ n.i }}" size="{{ 44 }}" hint-size="44px,44px"></x-import><span style="position:absolute;right:-3px;bottom:-3px;width:20px;height:20px;border-radius:96px;background:{{ n.dot }};color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #fff"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ n.kindIcon }}" size="11" hint-size="11px,11px"></x-import></span></div>
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+                  <div style="font-size:14px;line-height:1.45">{{ n.text }}</div>
+                  <div style="font-size:12px;color:#64748b">{{ n.modeLabel }} · {{ n.time }}</div>
+                  <sc-if value="{{ n.isMentor }}"><div style="display:flex;gap:8px"><button onClick="{{ n.onAccept }}" style="border:0;height:34px;padding:0 16px;border-radius:40px;background:linear-gradient(90deg,#a24688,#4e3aba);color:#fff;font-size:13px;font-weight:600;cursor:pointer">Accept</button><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Button" variant="outline" onClick="{{ n.onDecline }}" style="height:34px;border-radius:40px" hint-size="80px,34px">Decline</x-import></div></sc-if>
+                  <sc-if value="{{ n.isAction }}"><div><button onClick="{{ n.onAction }}" style="border:0;height:34px;padding:0 16px;border-radius:40px;background:{{ n.btnBg }};color:{{ n.btnFg }};font-size:13px;font-weight:600;cursor:pointer">{{ n.actionLabel }}</button></div></sc-if>
+                  <sc-if value="{{ n.status }}"><div style="font-size:13px;font-weight:600;color:{{ n.dot }};display:flex;align-items:center;gap:4px"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconCheck" size="14" hint-size="14px,14px"></x-import>{{ n.status }}</div></sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ ovCompose }}">
+        <div style="position:absolute;inset:0;z-index:4;background:#fff;display:flex;flex-direction:column">
+          <div style="padding:54px 10px 8px;display:flex;align-items:center;gap:8px">
+            <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Button" variant="ghost" onClick="{{ closeOverlay }}" hint-size="70px,40px">Cancel</x-import>
+            <div style="flex:1;text-align:center;font-size:16px;font-weight:700">New post</div>
+            <button onClick="{{ publish }}" style="border:0;height:38px;padding:0 18px;border-radius:40px;background:{{ audGrad }};color:#fff;font-size:14px;font-weight:700;cursor:pointer;opacity:{{ postOpacity }}">Post</button>
+          </div>
+          <div style="padding:8px 16px 0;display:flex;flex-direction:column;gap:14px;flex:1;overflow-y:auto">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+              <sc-for list="{{ audiences }}" as="au" hint-placeholder-count="3">
+                <button onClick="{{ au.onClick }}" style="border:0;cursor:pointer;padding:12px 10px;border-radius:18px;text-align:left;display:flex;flex-direction:column;gap:8px;background:{{ au.bg }};color:{{ au.fg }};box-shadow:inset 0 0 0 1px {{ au.bd }};transition:all .2s">
+                  <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="{{ au.icon }}" size="20" hint-size="20px,20px"></x-import>
+                  <div><div style="font-size:13px;font-weight:700">{{ au.label }}</div><div style="font-size:11px;opacity:.8">{{ au.sub }}</div></div>
+                </button>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Avatar" src="{{ meSrc }}" size="{{ 40 }}" hint-size="40px,40px"></x-import>
+              <textarea value="{{ compose }}" onChange="{{ onCompose }}" placeholder="{{ composePrompt }}" style="flex:1;min-height:120px;border:0;outline:none;resize:none;font-size:18px;line-height:1.45;color:#0f172a;padding-top:8px"></textarea>
+            </div>
+            <sc-if value="{{ composeImg }}">
+              <div style="position:relative;border-radius:18px;overflow:hidden"><img src="{{ composeImg }}" style="width:100%;height:220px;object-fit:cover;display:block"><button onClick="{{ toggleImg }}" aria-label="Remove photo" style="position:absolute;top:10px;right:10px;width:32px;height:32px;border:0;border-radius:96px;background:rgba(15,23,42,.7);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconX" size="16" hint-size="16px,16px"></x-import></button></div>
+            </sc-if>
+          </div>
+          <div style="display:flex;gap:8px;padding:10px 16px 36px;border-top:1px solid #f1f5f9">
+            <button onClick="{{ toggleImg }}" style="flex:1;border:0;cursor:pointer;height:44px;border-radius:40px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:600;background:{{ audSoft }};color:{{ audAccent }}"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconImage" size="17" hint-size="17px,17px"></x-import>Photo</button>
+            <button style="flex:1;border:0;cursor:pointer;height:44px;border-radius:40px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:600;background:#f1f5f9;color:#334155"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconMapPin" size="17" hint-size="17px,17px"></x-import>Place</button>
+            <button style="flex:1;border:0;cursor:pointer;height:44px;border-radius:40px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:600;background:#f1f5f9;color:#334155"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconUsers" size="17" hint-size="17px,17px"></x-import>Tag</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ ovStory }}">
+        <div style="position:absolute;inset:0;z-index:4;background:#000;color:#fff">
+          <img src="{{ storyImg }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <div style="position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.5),transparent 25%,transparent 60%,rgba(0,0,0,.7))"></div>
+          <div onClick="{{ storyNext }}" style="position:absolute;inset:120px 0 110px 0;cursor:pointer"></div>
+          <div style="position:absolute;left:12px;right:12px;top:56px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:4px">
+              <sc-for list="{{ storyBars }}" as="sb"><div style="flex:1;height:3px;border-radius:40px;background:rgba(255,255,255,.35);overflow:hidden"><div style="height:100%;width:{{ sb.w }};background:#fff"></div></div></sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <img src="{{ curStory.src }}" style="width:36px;height:36px;border-radius:96px;object-fit:cover;box-shadow:0 0 0 2px #fff">
+              <div style="flex:1;font-size:14px;font-weight:700">{{ curStory.name }} <span style="font-weight:500;opacity:.75">{{ curStory.time }}</span></div>
+              <button onClick="{{ closeOverlay }}" aria-label="Close" style="border:0;background:none;color:#fff;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconX" size="24" hint-size="24px,24px"></x-import></button>
+            </div>
+          </div>
+          <div style="position:absolute;left:20px;right:20px;bottom:110px;font-size:24px;font-weight:800;letter-spacing:-0.02em;line-height:1.15;text-shadow:0 2px 10px rgba(0,0,0,.35)">{{ storyCaption }}</div>
+          <div style="position:absolute;left:12px;right:12px;bottom:36px;display:flex;gap:8px;align-items:center">
+            <input placeholder="Reply to {{ curStory.first }}" style="flex:1;height:46px;border:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);border-radius:40px;padding:0 18px;font-size:15px;background:rgba(0,0,0,.2);color:#fff;outline:none">
+            <button onClick="{{ storyLike }}" aria-label="Like" style="border:0;background:none;color:{{ storyLikeColor }};width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconHeart" size="26" hint-size="26px,26px"></x-import></button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ ovCall }}">
+        <div style="position:absolute;inset:0;z-index:4;background:{{ callGrad }};color:#fff;display:flex;flex-direction:column;align-items:center;padding:130px 24px 70px;overflow:hidden">
+          <div style="position:relative;width:150px;height:150px;display:flex;align-items:center;justify-content:center">
+            <div style="position:absolute;inset:-26px;border-radius:96px;background:rgba(255,255,255,.08)"></div>
+            <div style="position:absolute;inset:-12px;border-radius:96px;background:rgba(255,255,255,.12)"></div>
+            <x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Avatar" src="{{ call.src }}" initials="{{ call.i }}" size="{{ 150 }}" hint-size="150px,150px"></x-import>
+          </div>
+          <div style="font-size:28px;font-weight:800;margin-top:40px;letter-spacing:-0.02em">{{ call.name }}</div>
+          <div style="font-size:15px;opacity:.8;margin-top:6px">{{ callLabel }}</div>
+          <div style="flex:1"></div>
+          <div style="display:flex;gap:26px">
+            <button onClick="{{ toggleMute }}" aria-label="Mute" style="width:66px;height:66px;border:0;border-radius:96px;background:{{ muteBg }};color:{{ muteFg }};display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconMicOff" size="24" hint-size="24px,24px"></x-import></button>
+            <button aria-label="Video" style="width:66px;height:66px;border:0;border-radius:96px;background:rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconVideo" size="24" hint-size="24px,24px"></x-import></button>
+            <button onClick="{{ endCall }}" aria-label="End call" style="width:66px;height:66px;border:0;border-radius:96px;background:#ef4444;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer"><x-import component-from-global-scope="ShadcnUiDesignSystem_22e1a2.Icon" name="IconPhoneOff" size="24" hint-size="24px,24px"></x-import></button>
+          </div>
+        </div>
+      </sc-if>
+
+      {{ wipe }}
+
+      <sc-if value="{{ toast }}">
+        <div style="position:absolute;left:24px;right:24px;bottom:110px;z-index:6;background:#0f172a;color:#fff;border-radius:40px;padding:12px 18px;font-size:14px;font-weight:600;box-shadow:0 8px 20px rgba(15,23,42,.25);text-align:center">{{ toast }}</div>
+      </sc-if>
+    </div>
+  </x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;personal&quot;,&quot;work&quot;],&quot;default&quot;:&quot;personal&quot;,&quot;tsType&quot;:&quot;'personal'|'work'&quot;},&quot;skipOnboarding&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const RU=(g,n)=>`https://randomuser.me/api/portraits/${g}/${n}.jpg`;
+const A={maya:RU('women',44),rahul:RU('men',32),lea:RU('women',68),jonah:RU('men',75),priya:RU('women',65),daniel:RU('men',46),sam:RU('men',86),aisha:RU('women',79),kenji:RU('men',52),tomas:RU('men',22),nina:RU('women',33),ines:RU('women',12),me:RU('men',36),mom:RU('women',90),dad:RU('men',91)};
+const IMG=id=>`assets/p${id}.jpg`;
+const BYNAME={'Maya Chen':A.maya,'Rahul Mehta':A.rahul,'Lea Fischer':A.lea,'Jonah Park':A.jonah,'Priya Nair':A.priya,'Daniel Ortiz':A.daniel,'Sam Okafor':A.sam,'Aisha Bello':A.aisha,'Kenji Watanabe':A.kenji,'Tomás Briones':A.tomas,'Nina Alvarez':A.nina,'Inés Duarte':A.ines,Mom:A.mom,Dad:A.dad,Jonah:A.jonah,Kenji:A.kenji,Daniel:A.daniel,Aisha:A.aisha,Lea:A.lea};
+const TH={personal:{accent:'#db4e66',grad:'linear-gradient(135deg,#db4e66 0%,#a24688 100%)',tint:'#fdf2f4',soft:'#fce7eb',shadow:'rgba(219,78,102,.35)'},work:{accent:'#4e3aba',grad:'linear-gradient(135deg,#a24688 0%,#4e3aba 100%)',tint:'#f3f1fc',soft:'#e4e0f7',shadow:'rgba(78,58,186,.35)'}};
+const STORIES={
+ personal:[{id:'maya',name:'Maya Chen',time:'2h',frames:[1018,1015],caps:['Summit before 7am','Worth every switchback']},{id:'rahul',name:'Rahul Mehta',time:'4h',frames:[1039],caps:['Found a waterfall nobody told us about']},{id:'lea',name:'Lea Fischer',time:'6h',frames:[1080,429],caps:['Saturday market haul','Jam season']},{id:'jonah',name:'Jonah Park',time:'9h',frames:[1025],caps:['Biscuit refuses to go outside']}],
+ work:[{id:'priya',name:'Priya Nair',time:'1h',frames:[1,8],caps:['Offsite day one','Roadmap is locked']},{id:'daniel',name:'Daniel Ortiz',time:'3h',frames:[180],caps:['Sketching the next onboarding']},{id:'aisha',name:'Aisha Bello',time:'1d',frames:[1067,1031],caps:['Speaking at DevDays Chicago','Slides are up on my profile']}]};
+const CHATS=[
+ {id:'maya',mode:'personal',name:'Maya Chen',last:'Saturday still on? I can drive.',time:'9:41',unread:2,sub:'online'},
+ {id:'family',mode:'personal',name:'Family',group:true,last:'Mom: Dinner at 7, bring dessert',time:'9:12',unread:5},
+ {id:'rahul',mode:'personal',name:'Rahul Mehta',last:'You: haha fair',time:'Yesterday',unread:0,sub:'last seen today at 8:02'},
+ {id:'football',mode:'personal',name:'Sunday Football',group:true,last:'Jonah: Need 2 more for 10am',time:'Yesterday',unread:0},
+ {id:'lea',mode:'personal',name:'Lea Fischer',last:'Sent a photo',time:'Mon',unread:0,sub:'online'},
+ {id:'priya',mode:'work',name:'Priya Nair',verified:true,last:'Can you share the case study before Thursday?',time:'10:05',unread:1,sub:'Product Lead · Northwind'},
+ {id:'guild',mode:'work',name:'Design Guild',group:true,last:'Daniel: Portfolio review thread is up',time:'9:30',unread:12},
+ {id:'daniel',mode:'work',name:'Daniel Ortiz',last:'You: Thanks for the intro!',time:'Yesterday',unread:0,sub:'Senior Designer · Lumen'},
+ {id:'nwdesign',mode:'work',name:'Northwind Design',group:true,last:'Aisha: Crit moved to 3pm',time:'Tue',unread:0},
+ {id:'sam',mode:'work',name:'Sam Okafor',last:'Are you open to a quick call this week?',time:'Mon',unread:0,sub:'Recruiter · Fieldstone'}];
+const GROUPS={
+ football:{name:'Sunday Football',cover:IMG(1058),members:'14 members',privacy:'Public',mode:'personal',unread:3,activity:'Jonah: Need 2 more for 10am',faces:[A.jonah,A.lea,A.rahul],desc:'Pickup games every Sunday at Lake Park, field 3. All levels welcome.',posts:[{a:'Jonah Park',t:'Field is booked for 10am. Bring a light and a dark shirt.',time:'1d',img:IMG(1058)},{a:'Lea Fischer',t:'Who has the spare ball pump?',time:'3d'}]},
+ family:{name:'Family',cover:IMG(1011),members:'6 members',privacy:'Private',mode:'personal',unread:5,activity:'Mom: Dinner at 7, bring dessert',faces:[A.mom,A.dad,A.rahul],desc:'Private family group. Only members see posts and photos.',posts:[{a:'Mom',t:'Uploaded 23 photos from the lake weekend.',time:'2d',img:IMG(1011)}]},
+ plantswap:{name:'Oakland Plant Swap',cover:IMG(1043),members:'2.3k members',privacy:'Public',mode:'personal',unread:0,activity:'4 monstera cuttings up for trade',faces:[A.nina,A.ines,A.maya],desc:'Trade cuttings and pots with neighbours. Meetups the first Saturday of every month.',posts:[{a:'Nina Alvarez',t:'4 monstera cuttings up for trade. Looking for a pothos.',time:'3h'}]},
+ bookclub:{name:'Tuesday Book Club',cover:IMG(431),members:'11 members',privacy:'Private',mode:'personal',unread:0,activity:'Next up: Piranesi, chapters 1–8',faces:[A.lea,A.ines,A.maya],desc:'One book a month. We meet at Lea\'s on the last Tuesday.',posts:[{a:'Lea Fischer',t:'Next up is Piranesi, chapters 1–8. Coffee is on me.',time:'2d',img:IMG(431)}]},
+ guild:{name:'Design Guild',cover:IMG(60),members:'1,248 members',privacy:'Public',mode:'work',activity:'Portfolio review thread is up',desc:'Open community for product designers. Critiques, gigs and mentorship.',posts:[{a:'Daniel Ortiz',t:'Portfolio review thread is up. Drop a link and review two others.',time:'2h',img:IMG(180)},{a:'Priya Nair',t:'Gig: Northwind needs a contract illustrator for 3 weeks. Message me.',time:'5h'}]},
+ nwdesign:{name:'Northwind Design',cover:IMG(1031),members:'9 members',privacy:'Verified employees',mode:'work',activity:'Crit moved to 3pm',desc:'Internal group. Only verified Northwind employees can join.',posts:[{a:'Aisha Bello',t:'Crit moved to 3pm today. Same room.',time:'Tue'}]}};
+const MSGS={
+ maya:[{f:'them',t:'Are we still doing the Mt. Tam loop?',at:'9:30'},{f:'me',t:'Yes! Trailhead at 8?',at:'9:32'},{f:'them',t:'',img:IMG(1018),at:'9:33'},{f:'them',t:'Saturday still on? I can drive.',at:'9:41'}],
+ family:[{f:'Dad',t:'I\'ll handle the grill',at:'9:05'},{f:'Mom',t:'Dinner at 7, bring dessert',at:'9:12'}],
+ rahul:[{f:'them',t:'You owe me a rematch',at:'Yesterday'},{f:'me',t:'haha fair',at:'Yesterday'}],
+ football:[{f:'Jonah',t:'Need 2 more for 10am',at:'Yesterday'}],
+ lea:[{f:'them',t:'Look at this haul',at:'Mon'},{f:'them',t:'',img:IMG(1080),at:'Mon'}],
+ priya:[{f:'them',t:'Loved your talk at the meetup.',at:'9:58'},{f:'them',t:'Can you share the case study before Thursday?',at:'10:05'}],
+ guild:[{f:'Kenji',t:'Anyone hiring junior researchers?',at:'9:10'},{f:'Daniel',t:'Portfolio review thread is up',at:'9:30'}],
+ daniel:[{f:'them',t:'Intro\'d you to the Lumen team',at:'Yesterday'},{f:'me',t:'Thanks for the intro!',at:'Yesterday'}],
+ nwdesign:[{f:'Aisha',t:'Crit moved to 3pm',at:'Tue'}],
+ sam:[{f:'them',t:'Hi Alex, I\'m hiring for a UX research contract at Fieldstone.',at:'Mon'},{f:'them',t:'Are you open to a quick call this week?',at:'Mon'}]};
+const REPLIES=['Sounds good','Perfect, see you then','Got it, thanks','Will do'];
+const POSTS=[
+ {id:'p1',mode:'personal',aud:'Friends',author:'Maya Chen',meta:'with Lea Fischer',time:'2h',text:'Made it to the top before the fog rolled in. Same time next month?',img:IMG(1018),imgH:'340px',likes:48,comments:12},
+ {id:'p2',mode:'personal',aud:'Friends',author:'Rahul Mehta',meta:'added 14 photos to Norway, June',time:'5h',text:'Still thinking about this trip.',album:true,likes:31,comments:4},
+ {id:'p3',mode:'personal',aud:'Public',author:'Jonah Park',meta:'in Sunday Football',time:'1d',text:'Season starts this weekend. Everyone welcome, all levels.',img:IMG(1058),imgH:'220px',likes:22,comments:9},
+ {id:'w1',mode:'work',aud:'Colleagues',author:'Priya Nair',verified:true,meta:'Product Lead at Northwind',time:'1h',text:'We\'re hiring two product designers for payments. Hybrid in Oakland or remote in the US. Happy to refer people from my network.',job:true,jobTitle:'Product Designer, Payments',jobCo:'Northwind · Oakland or remote',likes:120,comments:34},
+ {id:'w2',mode:'work',aud:'Public',author:'Daniel Ortiz',meta:'Senior Designer at Lumen',time:'4h',text:'Shipped the new onboarding for Lumen. Activation is up and support tickets are down. Case study in the comments.',img:IMG(180),imgH:'240px',likes:86,comments:15},
+ {id:'w3',mode:'work',aud:'Colleagues',author:'Aisha Bello',verified:true,meta:'Engineering Manager at Northwind',time:'1d',text:'Spoke at DevDays about growing support engineers into product engineers. I have two mentoring slots open this quarter.',img:IMG(1067),imgH:'220px',likes:64,comments:7}];
+const JOBS=[
+ {id:'j1',title:'Product Designer, Payments',co:'Northwind',i:'NW',loc:'Oakland · Hybrid',type:'Full-time',pay:'$140k–$165k',ref:'Priya Nair can refer you',refSrc:A.priya,cover:IMG(1),tags:['Fintech','Figma','Prototyping']},
+ {id:'j2',title:'Brand refresh for a café',co:'Crumb & Co.',i:'CC',loc:'Remote',type:'Gig',pay:'$600 · 1 week',ref:'Nina Alvarez posted this',refSrc:A.nina,cover:IMG(1060),tags:['Branding','Logo']},
+ {id:'j3',title:'UX Researcher',co:'Fieldstone',i:'FS',loc:'Remote · US',type:'Contract',pay:'$75/hr · 6 months',ref:'Sam Okafor is hiring',refSrc:A.sam,cover:IMG(3),tags:['Interviews','Mobile']},
+ {id:'j4',title:'Design Systems Lead',co:'Lumen',i:'LU',loc:'San Francisco',type:'Full-time',pay:'$180k–$210k',ref:'Daniel Ortiz works here',refSrc:A.daniel,cover:IMG(1031),tags:['Leadership','Tokens','React']},
+ {id:'j5',title:'Onboarding illustrations',co:'Northwind',i:'NW',loc:'Remote',type:'Gig',pay:'$2,400 · 3 weeks',ref:'',cover:IMG(60),tags:['Illustration']}];
+const MENTORS=[{id:'aisha',name:'Aisha Bello',topic:'Engineering management'},{id:'priya',name:'Priya Nair',topic:'Product strategy'},{id:'kenji',name:'Kenji Watanabe',topic:'Design leadership'}];
+const NOTIFS=[
+ {id:'n1',mode:'work',kind:'mentor',who:'Tomás Briones',text:'Tomás Briones asked you for mentorship in interaction design.',time:'12m'},
+ {id:'n2',mode:'work',kind:'action',action:'Endorse back',done:'Endorsed Aisha for Hiring',who:'Aisha Bello',text:'Aisha Bello endorsed you for Prototyping.',time:'1h'},
+ {id:'n3',mode:'personal',kind:'plain',who:'Maya Chen',text:'Maya Chen tagged you in a post.',time:'2h'},
+ {id:'n4',mode:'work',kind:'job',action:'See role',who:'Priya Nair',text:'Priya shared a role that matches your skills: Product Designer, Payments.',time:'3h'},
+ {id:'n5',mode:'personal',kind:'action',action:'Join group',done:'Joined Sunday Football',who:'Jonah Park',text:'Jonah Park invited you to Sunday Football.',time:'1d'},
+ {id:'n6',mode:'personal',kind:'plain',who:'Rahul Mehta',text:'Rahul Mehta and 12 others liked your photo.',time:'2d'}];
+const KIND_ICON={mentor:'IconGraduationCap',action:'IconAward',plain:'IconHeart',job:'IconBriefcase'};
+const CALLS=[
+ {name:'Maya Chen',kind:'in',video:false,time:'Today, 8:14',mode:'personal'},
+ {name:'Family',kind:'missed',video:true,time:'Yesterday, 19:02',mode:'personal'},
+ {name:'Rahul Mehta',kind:'out',video:false,time:'Sunday, 11:40',mode:'personal'},
+ {name:'Priya Nair',kind:'out',video:true,time:'Today, 9:00',mode:'work'},
+ {name:'Sam Okafor',kind:'missed',video:false,time:'Monday, 14:21',mode:'work'},
+ {name:'Daniel Ortiz',kind:'in',video:true,time:'Friday, 16:05',mode:'work'}];
+const PEOPLE=[
+ {id:'jonah',name:'Jonah Park',meta:'4 mutual friends'},
+ {id:'kenji',name:'Kenji Watanabe',meta:'Design Director at Lumen'},
+ {id:'tomas',name:'Tomás Briones',meta:'Support Lead at Northwind'},
+ {id:'nina',name:'Nina Alvarez',meta:'Founder at Crumb & Co.'},
+ {id:'ines',name:'Inés Duarte',meta:'6 mutual friends · Oakland'},
+ {id:'aisha',name:'Aisha Bello',meta:'Eng Manager at Northwind'}];
+const SKILLS=[['Interaction design',42,'Priya Nair, Daniel Ortiz and 40 others'],['Prototyping',31,'Aisha Bello and 30 others'],['Design systems',27,'Daniel Ortiz and 26 others'],['User research',12,'Sam Okafor and 11 others']];
+const ON='#fff',OFF='transparent';
+
+class Component extends DCLogic {
+  state = { onboarding: !(this.props.skipOnboarding ?? false), step:0, mode: this.props.startMode ?? 'personal', tab:'home', overlay:null, chatId:null, gTab:'chat', story:0, frame:0, storyP:0, seen:{}, storyLiked:{}, chatTab:'chats', draft:'', posts:POSTS, liked:{}, saved:{}, applied:{}, gone:{}, jobExit:null, mentorReq:{}, msgs:MSGS, read:{}, compose:'', composeImg:false, audience:null, query:'', cat:'People', jobFilter:'All', mentorOpen:true, viewAs:null, nStatus:{}, typing:false, connected:{}, call:null, callSecs:0, muted:false, toast:'', name:'', phone:'', role:'', company:'', workEmail:'', notifsSeen:false, endorsed:false, wipeKey:0 };
+  threadRef = React.createRef();
+  componentDidUpdate(pp, ps){ const el=this.threadRef.current; if(el && (ps.msgs!==this.state.msgs || ps.chatId!==this.state.chatId || ps.typing!==this.state.typing || ps.gTab!==this.state.gTab || ps.overlay!==this.state.overlay)) el.scrollTop=el.scrollHeight; }
+  componentWillUnmount(){ clearInterval(this.st); clearInterval(this.ct); clearTimeout(this.tt); }
+  flash(t){ clearTimeout(this.tt); this.setState({toast:t}); this.tt=setTimeout(()=>this.setState({toast:''}),2200); }
+  close(){ clearInterval(this.st); clearInterval(this.ct); this.setState({overlay:null,typing:false}); }
+  openChat(id){ this.setState(s=>({overlay:'thread',chatId:id,gTab:'chat',draft:'',read:{...s.read,[id]:true}})); }
+  openStory(i){ clearInterval(this.st); const list=STORIES[this.state.mode];
+    this.setState(s=>({overlay:'story',story:i,frame:0,storyP:0,seen:{...s.seen,[list[i].id]:true}}));
+    this.st=setInterval(()=>this.setState(s=>{ const L=STORIES[s.mode], cur=L[s.story]; if(!cur||s.overlay!=='story'){clearInterval(this.st);return null;}
+      if(s.storyP+1.6<100) return {storyP:s.storyP+1.6};
+      if(s.frame<cur.frames.length-1) return {frame:s.frame+1,storyP:0};
+      if(s.story<L.length-1) return {story:s.story+1,frame:0,storyP:0,seen:{...s.seen,[L[s.story+1].id]:true}};
+      clearInterval(this.st); return {overlay:null}; }),80); }
+  startCall(name){ clearInterval(this.ct); this.setState({overlay:'call',call:{name,src:BYNAME[name]||'',i:name.slice(0,2).toUpperCase()},callSecs:0,muted:false}); this.ct=setInterval(()=>this.setState(s=>({callSecs:s.callSecs+1})),1000); }
+  send(){ const s=this.state, t=s.draft.trim(), id=s.chatId; if(!t||!id) return;
+    const now=new Date(), at=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+    this.setState({msgs:{...s.msgs,[id]:[...(s.msgs[id]||[]),{f:'me',t,at}]},draft:''});
+    if(GROUPS[id]) return;
+    setTimeout(()=>this.state.chatId===id&&this.setState({typing:true}),700);
+    setTimeout(()=>this.setState(st=>({typing:false,msgs:{...st.msgs,[id]:[...(st.msgs[id]||[]),{f:'them',t:REPLIES[(st.msgs[id]||[]).length%REPLIES.length],at}]}})),2000); }
+  setMode(m){ if(m===this.state.mode) return; clearInterval(this.st); this.setState(s=>{ let tab=s.tab; if(tab==='groups'&&m==='work') tab='jobs'; if(tab==='jobs'&&m==='personal') tab='groups'; return {mode:m,tab,overlay:null,viewAs:null,wipeKey:s.wipeKey+1}; }); }
+  jobAct(kind){ const list=this.jobList(); const j=list[0]; if(!j||this.state.jobExit) return;
+    if(kind==='save'){ this.flash('Saved '+j.title); }
+    this.setState({jobExit:kind==='skip'?'left':kind==='apply'?'right':'up'});
+    setTimeout(()=>this.setState(s=>({jobExit:null,gone:{...s.gone,[j.id]:kind},applied:kind==='apply'?{...s.applied,[j.id]:true}:s.applied})),280);
+    if(kind==='apply') this.flash(j.type==='Gig'?'Proposal sent to '+j.co:'Applied with your Work profile'); }
+  jobList(){ const s=this.state; return JOBS.filter(j=>(s.jobFilter==='All'||j.type===s.jobFilter)&&!s.gone[j.id]); }
+  publish(){ const s=this.state; if(!s.compose.trim()&&!s.composeImg) return; const aud=s.audience||(s.mode==='work'?'Colleagues':'Friends'); const mode=aud==='Friends'?'personal':aud==='Colleagues'?'work':'both';
+    this.setState({posts:[{id:'u'+Date.now(),mode,aud:aud==='Everyone'?'Public':aud,author:s.name||'Alex Rivera',src:A.me,meta:'Just now',time:'now',text:s.compose.trim(),img:s.composeImg?IMG(1060):null,imgH:'260px',likes:0,comments:0},...s.posts],compose:'',composeImg:false,overlay:null,tab:'home',audience:null});
+    if(mode!=='both'&&mode!==s.mode) this.setMode(mode);
+    this.flash(aud==='Everyone'?'Posted to both spaces':'Posted to '+(aud==='Friends'?'Personal':'Work')+' only'); }
+  jump(k){ clearInterval(this.st); clearInterval(this.ct); const b={onboarding:false,overlay:null}; const s=this.state;
+    if(k==='story'){ this.setState({...b,tab:'home'}); return this.openStory(0); }
+    if(k==='thread'){ this.setState({...b,tab:'chats'}); return this.openChat(s.mode==='work'?'priya':'maya'); }
+    if(k==='group'){ this.setState({...b,tab:s.mode==='work'?'chats':'groups'}); return this.openChat(s.mode==='work'?'guild':'football'); }
+    if(k==='jobs') { this.setState({...b,tab:'jobs'}); return this.setMode('work'); }
+    if(k==='groups') { this.setState({...b,tab:'groups'}); return this.setMode('personal'); }
+    const m={onboarding:{onboarding:true,step:0},home:{tab:'home'},chats:{tab:'chats',chatTab:'chats'},calls:{tab:'chats',chatTab:'calls'},compose:{overlay:'compose'},notifs:{overlay:'notifs',notifsSeen:true},discover:{overlay:'discover'},profile:{tab:'profile'}}[k];
+    this.setState({...b,...m}); }
+  renderVals(){
+    const s=this.state, m=s.mode, isW=m==='work', T=TH[m], set=o=>this.setState(o);
+    const pill=(on)=>[on?ON:OFF,on?T.accent:'#64748b'];
+    const meName=s.name||'Alex Rivera', meCompany=s.company||'Northwind', meRole=s.role||'Product Designer';
+    const chatsM=CHATS.filter(c=>c.mode===m);
+    const unreadCount=chatsM.filter(c=>c.unread&&!s.read[c.id]).length;
+    const mk=([id,icon,label])=>({id,icon,label,badge:id==='chats'&&unreadCount?unreadCount:0,color:s.tab===id?T.accent:'#94a3b8',weight:s.tab===id?700:500,onClick:()=>set({tab:id,overlay:null})});
+    const titles={home:isW?'Your network':'Your people',chats:'Chats',groups:'Groups',jobs:'Opportunities',profile:'Profile'};
+    const audIcon={Friends:'IconHeart',Colleagues:'IconBriefcase',Public:'IconGlobe'};
+    const audCol={Friends:['#fce7eb','#db4e66'],Colleagues:['#e4e0f7','#4e3aba'],Public:['#f1f5f9','#334155']};
+    const posts=s.posts.filter(p=>p.mode===m||p.mode==='both').map(p=>{const L=!!s.liked[p.id], S=!!s.saved[p.id]; return {...p,src:p.src||BYNAME[p.author],audIcon:audIcon[p.aud],audBg:audCol[p.aud][0],audFg:audCol[p.aud][1],likeIcon:isW?'IconThumbsUp':'IconHeart',likeColor:L?T.accent:'#475569',likeBg:L?T.soft:'transparent',likeCount:p.likes+(L?1:0),saveColor:S?T.accent:'#94a3b8',
+      onLike:()=>set({liked:{...s.liked,[p.id]:!L}}),onSave:()=>{set({saved:{...s.saved,[p.id]:!S}});this.flash(S?'Removed from saved':'Saved');},onSend:()=>set({tab:'chats',chatTab:'chats'})};});
+    const stories=STORIES[m].map((st,i)=>({...st,src:BYNAME[st.name],cover:IMG(st.frames[0]),first:st.name.split(' ')[0],op:s.seen[st.id]?.55:1,ring:s.seen[st.id]?'#cbd5e1':T.grad,onClick:()=>this.openStory(i)}));
+    const curS=STORIES[m][s.story]||STORIES[m][0];
+    const chatSrc=c=>c.group?null:BYNAME[c.name];
+    const chats=chatsM.map(c=>{const ms=s.msgs[c.id]; const lm=ms&&ms[ms.length-1]; let last=c.last; if(lm&&ms!==MSGS[c.id]) last=(lm.f==='me'?'You: ':(GROUPS[c.id]?lm.f+': ':''))+lm.t; const un=s.read[c.id]?0:c.unread; return {...c,last,unread:un,timeColor:un?T.accent:'#64748b',src:chatSrc(c),tile:!!c.group,cover:c.group?GROUPS[c.id].cover:'',onClick:()=>this.openChat(c.id)};});
+    const activeNow=chatsM.filter(c=>!c.group).map(c=>({first:c.name.split(' ')[0],src:BYNAME[c.name],onClick:()=>this.openChat(c.id)}));
+    const calls=CALLS.filter(c=>c.mode===m).map(c=>({...c,src:BYNAME[c.name]||'',i:c.name.slice(0,2).toUpperCase(),icon:c.kind==='in'?'IconPhoneIncoming':c.kind==='out'?'IconPhoneOutgoing':'IconPhoneMissed',nameColor:c.kind==='missed'?'#ef4444':'#0f172a',callIcon:c.video?'IconVideo':'IconPhone',onCall:()=>this.startCall(c.name)}));
+    const groupList=Object.entries(GROUPS).filter(([,g])=>g.mode==='personal').map(([id,g])=>({...g,unread:s.read[id]?0:g.unread,privIcon:g.privacy==='Private'?'IconLock':'IconGlobe',onClick:()=>this.openChat(id)}));
+    const mentors=MENTORS.map(x=>{const d=!!s.mentorReq[x.id]; return {...x,src:BYNAME[x.name],label:d?'Requested':'Request session',bg:d?'rgba(255,255,255,.25)':'#fff',fg:d?'#fff':'#4e3aba',onClick:()=>{if(d)return;set({mentorReq:{...s.mentorReq,[x.id]:true}});this.flash('Request sent to '+x.name);}};});
+    const jobFilters=['All','Full-time','Contract','Gig'].map(l=>{const on=s.jobFilter===l; return {label:l==='Gig'?'Gigs':l,bg:on?'#4e3aba':'#fff',fg:on?'#fff':'#0f172a',bd:on?'#4e3aba':'#e2e8f0',onClick:()=>set({jobFilter:l})};});
+    const jl=this.jobList(), job=jl[0]||JOBS[0], totalF=JOBS.filter(j=>s.jobFilter==='All'||j.type===s.jobFilter).length;
+    const ex=s.jobExit, jobTransform=ex==='left'?'translateX(-120%) rotate(-14deg)':ex==='right'?'translateX(120%) rotate(14deg)':ex==='up'?'translateY(-110%)':'none';
+    const q=s.query.trim().toLowerCase(), has=x=>!q||x.toLowerCase().includes(q);
+    const people=PEOPLE.filter(p=>has(p.name+' '+p.meta)).map(p=>{const c=s.connected[p.id]; return {...p,src:BYNAME[p.name],open:!c,sent:c==='f'?'Friend request sent':c==='c'?'Connection sent':'',sentColor:c==='f'?'#db4e66':'#4e3aba',onFriend:()=>set({connected:{...s.connected,[p.id]:'f'}}),onConnect:()=>set({connected:{...s.connected,[p.id]:'c'}})};});
+    const dGroups=Object.entries(GROUPS).filter(([,g])=>has(g.name+' '+g.desc)).map(([id,g])=>({...g,space:g.mode==='work'?'Work':'Personal',bg:g.mode==='work'?'#e4e0f7':'#fce7eb',fg:g.mode==='work'?'#4e3aba':'#db4e66',onClick:()=>{this.setMode(g.mode);setTimeout(()=>this.openChat(id),0);}}));
+    const dJobs=JOBS.filter(j=>has(j.title+' '+j.co));
+    const counts={People:people.length,Groups:dGroups.length,Jobs:dJobs.length};
+    const searchCats=['People','Groups','Jobs'].map(l=>{const on=s.cat===l; return {label:l,bg:on?T.accent:'#fff',fg:on?'#fff':'#0f172a',bd:on?T.accent:'#e2e8f0',onClick:()=>set({cat:l})};});
+    const viewAs=s.viewAs||(isW?'colleagues':'friends'), vF=viewAs==='friends';
+    const nList=NOTIFS.map(n=>{const st=s.nStatus[n.id], w=n.mode==='work'; return {...n,src:BYNAME[n.who],i:n.who.slice(0,2),bg:n.mode===m?(w?'#f3f1fc':'#fdf2f4'):'#fff',dot:w?'#4e3aba':'#db4e66',kindIcon:KIND_ICON[n.kind],modeLabel:w?'Work':'Personal',status:st||'',isMentor:n.kind==='mentor'&&!st,isAction:(n.kind==='action'||n.kind==='job')&&!st,actionLabel:n.action,btnBg:w?'#e4e0f7':'#fce7eb',btnFg:w?'#4e3aba':'#db4e66',
+      onAccept:()=>set({nStatus:{...s.nStatus,[n.id]:'Accepted. A Work chat was created.'}}),onDecline:()=>set({nStatus:{...s.nStatus,[n.id]:'Declined'}}),
+      onAction:()=>{ if(n.kind==='job'){ set({overlay:null,tab:'jobs'}); this.setMode('work'); return;} set({nStatus:{...s.nStatus,[n.id]:n.done}}); }};});
+    const id=s.chatId, isG=!!GROUPS[id], c=CHATS.find(x=>x.id===id)||(isG?{...GROUPS[id],group:true}:{name:''});
+    const grp=GROUPS[id]||{desc:'',posts:[],cover:''};
+    const cMode=(GROUPS[id]&&GROUPS[id].mode)||c.mode||m, CT=TH[cMode];
+    const msgs=(s.msgs[id]||[]).map(x=>({t:x.t,img:x.img||'',at:x.at,mine:x.f==='me',theirs:x.f!=='me',who:isG&&x.f!=='me'&&x.f!=='them'?x.f:'',whoSrc:isG&&x.f!=='me'?(BYNAME[x.f]||''):''}));
+    const aud=s.audience||(isW?'Colleagues':'Friends'), AT=aud==='Friends'?TH.personal:aud==='Colleagues'?TH.work:{accent:'#a24688',soft:'#f5e6f0',grad:'linear-gradient(90deg,#db4e66,#a24688,#4e3aba)'};
+    const audiences=[['Friends','IconHeart','Personal only',TH.personal],['Colleagues','IconBriefcase','Work only',TH.work],['Everyone','IconGlobe','Both spaces',{accent:'#a24688',grad:'linear-gradient(135deg,#db4e66,#a24688,#4e3aba)'}]].map(([l,icon,sub,t])=>{const on=aud===l; return {label:l,icon,sub,bg:on?t.grad:'#fff',fg:on?'#fff':'#0f172a',bd:on?'transparent':'#e2e8f0',onClick:()=>set({audience:l})};});
+    const secs=Math.max(0,s.callSecs-3);
+    const ov=s.onboarding?null:s.overlay;
+    const jumpsL=[['onboarding','Onboarding'],['home','Home feed'],['story','Story'],['chats','Chats'],['thread','Chat thread'],['group','Group'],['calls','Calls'],['groups','Groups'],['jobs','Opportunities'],['compose','Create post'],['notifs','Activity'],['discover','Discover'],['profile','Profile']];
+    const wipe=s.wipeKey?React.createElement('div',{key:s.wipeKey,style:{position:'absolute',inset:0,zIndex:7,background:T.grad,animation:'duoWipe .9s ease forwards',pointerEvents:'none',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:6,color:'#fff'}},
+      React.createElement('div',{style:{fontSize:13,fontWeight:600,opacity:.85,animation:'duoLabel .9s ease forwards'}},'Switching to'),
+      React.createElement('div',{style:{fontSize:34,fontWeight:800,letterSpacing:'-0.03em',animation:'duoLabel .9s ease forwards'}},isW?'Work':'Personal')):null;
+    return {
+      jumps:jumpsL.map(([k,label])=>({label,onClick:()=>this.jump(k)})),
+      darkFrame:ov==='story'||ov==='call', wipe,
+      showOnboarding:s.onboarding, ob0:s.step===0, ob1:s.step===1, ob2:s.step===2,
+      obNext:()=>s.step<2?set({step:s.step+1}):set({onboarding:false,tab:'home'}),
+      name:s.name, phone:s.phone, role:s.role, company:s.company, workEmail:s.workEmail,
+      onName:e=>set({name:e.target.value}), onPhone:e=>set({phone:e.target.value}), onRole:e=>set({role:e.target.value}), onCompany:e=>set({company:e.target.value}), onEmail:e=>set({workEmail:e.target.value}),
+      title:titles[s.tab], spaceName:isW?'Work space':'Personal space',
+      accent:T.accent, grad:T.grad, tint:T.tint, soft:T.soft, orbShadow:T.shadow, isW,
+      toggleMode:()=>this.setMode(isW?'personal':'work'), orbIcon:isW?'IconBriefcase':'IconHeart', orbLabel:isW?'WORK':'PERSONAL',
+      tabsL:[['home','IconHome','Home'],['chats','IconMessageCircle','Chats']].map(mk),
+      tabsR:[[isW?'jobs':'groups',isW?'IconBriefcase':'IconUsers',isW?'Jobs':'Groups'],['profile','IconUser','You']].map(mk),
+      hasNotifs:!s.notifsSeen, openNotifs:()=>set({overlay:'notifs',notifsSeen:true}), openDiscover:()=>set({overlay:'discover'}),
+      isHome:s.tab==='home', isChats:s.tab==='chats', isGroups:s.tab==='groups', isJobs:s.tab==='jobs', isProfile:s.tab==='profile',
+      stories, myStoryLabel:isW?'Add update':'Your story', meSrc:A.me, meName, meCompany, meRole,
+      composePrompt:isW?'Share a win or ask your network':'What are you up to?', openCompose:()=>set({overlay:'compose',audience:null}),
+      endorseBack:()=>{ if(s.endorsed) return; set({endorsed:true}); this.flash('You endorsed Aisha for Hiring'); }, endorseLabel:s.endorsed?'Endorsed':'Endorse back',
+      posts, goJobs:()=>{ set({tab:'jobs',overlay:null}); this.setMode('work'); },
+      chatTabChats:()=>set({chatTab:'chats'}), chatTabCalls:()=>set({chatTab:'calls'}),
+      ctChatsBg:pill(s.chatTab==='chats')[0], ctChatsFg:pill(s.chatTab==='chats')[1], ctCallsBg:pill(s.chatTab==='calls')[0], ctCallsFg:pill(s.chatTab==='calls')[1],
+      showChatList:s.chatTab==='chats', showCalls:s.chatTab==='calls', activeNow,
+      chatScopeNote:isW?'Work chats. Friends never see these.':'Personal chats. Colleagues never see these.',
+      chats, calls, groupList, newGroup:()=>this.flash('Pick friends to start a group'),
+      mentors, jobFilters, hasJob:jl.length>0, hasJob2:jl.length>1, hasJob3:jl.length>2, noJobs:jl.length===0,
+      job, jobCounter:(totalF-jl.length+1)+' of '+totalF, jobTransform, jobOpacity:ex?0:1, applyLabel:job.type==='Gig'?'Send proposal':'Easy apply',
+      jobSkip:()=>this.jobAct('skip'), jobApply:()=>this.jobAct('apply'), jobSave:()=>this.jobAct('save'), jobReset:()=>set({gone:{}}),
+      appliedSummary:'You applied to '+Object.keys(s.applied).length+' and saved '+Object.values(s.gone).filter(v=>v==='save').length+'. New roles show up as your network shares them.',
+      ovDiscover:ov==='discover', query:s.query, onQuery:e=>set({query:e.target.value}), searchCats,
+      catPeople:s.cat==='People', catGroups:s.cat==='Groups', catJobs:s.cat==='Jobs',
+      people, dGroups, dJobs, noResults:!!q&&counts[s.cat]===0,
+      resultsLabel:q?counts[s.cat]+' results':(s.cat==='People'?'People you may know':s.cat==='Groups'?'Groups across both spaces':'Shared by your network'),
+      viewFriends:vF, viewColleagues:!vF, flip:vF?'rotateY(0deg)':'rotateY(180deg)',
+      vfBg:vF?'#db4e66':OFF, vfFg:vF?'#fff':'#64748b', vcBg:!vF?'#4e3aba':OFF, vcFg:!vF?'#fff':'#64748b',
+      viewAsFriends:()=>set({viewAs:'friends'}), viewAsColleagues:()=>set({viewAs:'colleagues'}),
+      photos:[1018,1011,1080,1025,1039,1012].map(IMG),
+      mentorOpen:s.mentorOpen, onMentor:v=>set({mentorOpen:typeof v==='boolean'?v:!s.mentorOpen}),
+      skills:SKILLS.map(([name,n,by])=>({name,n,by,w:Math.round(n/42*100)+'%'})),
+      portfolio:[{t:'Lumen onboarding',img:IMG(180)},{t:'Payments dashboard',img:IMG(0)},{t:'Design system v2',img:IMG(60)}].map(x=>x.img==='assets/p0.jpg'?{...x,img:IMG(8)}:x),
+      experience:[{r:meRole,c:meCompany,d:'2023 – now',i:meCompany.slice(0,2).toUpperCase()},{r:'Designer',c:'Lumen',d:'2020 – 2023',i:'LU'}],
+      hiddenNote:vF?'Hidden from friends: work history, skills, portfolio, work chats and job activity.':'Hidden from colleagues: photos, friends list, personal posts, stories and last seen.',
+      hiddenBg:vF?'#fdf2f4':'#f3f1fc', hiddenFg:vF?'#db4e66':'#4e3aba',
+      ovThread:ov==='thread', ovNotifs:ov==='notifs', ovCompose:ov==='compose', ovStory:ov==='story', ovCall:ov==='call',
+      closeOverlay:()=>this.close(),
+      th:{...c,src:chatSrc(c)}, thSub:s.typing?'typing…':(c.sub||''), isGroupOv:isG, isDmOv:!isG,
+      thAccent:CT.accent, thSoft:CT.soft, thTint:CT.tint, thGrad:CT.grad,
+      thCall:()=>this.startCall(c.name), thVideo:()=>this.startCall(c.name),
+      grp, grpPosts:grp.posts.map(p=>({...p,src:BYNAME[p.a],img:p.img||''})), gTabChat:()=>set({gTab:'chat'}), gTabPosts:()=>set({gTab:'posts'}),
+      gcBg:pill(s.gTab==='chat')[0], gcFg:s.gTab==='chat'?CT.accent:'#64748b', gpBg:pill(s.gTab==='posts')[0], gpFg:s.gTab==='posts'?CT.accent:'#64748b',
+      showGroupPosts:isG&&s.gTab==='posts', showThreadMsgs:!isG||s.gTab==='chat',
+      threadRef:this.threadRef, msgs, typing:s.typing,
+      spaceIcon:cMode==='work'?'IconBriefcase':'IconLock', spaceNote:cMode==='work'?'Work chat · stays in your Work space':'Personal chat · end-to-end encrypted',
+      draft:s.draft, onDraft:e=>set({draft:e.target.value}), onDraftKey:e=>{if(e.key==='Enter')this.send();}, send:()=>this.send(), sendIcon:s.draft.trim()?'IconSend':'IconMic',
+      notifs:nList,
+      compose:s.compose, onCompose:e=>set({compose:e.target.value}), postOpacity:(s.compose.trim()||s.composeImg)?1:.45, publish:()=>this.publish(),
+      composeImg:s.composeImg?IMG(1060):'', toggleImg:()=>set({composeImg:!s.composeImg}),
+      audiences, audGrad:AT.grad, audSoft:AT.soft, audAccent:AT.accent,
+      storyBars:curS.frames.map((_,i)=>({w:i<s.frame?'100%':i===s.frame?s.storyP+'%':'0%'})),
+      curStory:{...curS,src:BYNAME[curS.name],first:curS.name.split(' ')[0]}, storyImg:IMG(curS.frames[s.frame]||curS.frames[0]), storyCaption:curS.caps[s.frame]||'',
+      storyNext:()=>set({storyP:99}), storyLike:()=>set({storyLiked:{...s.storyLiked,[curS.id]:!s.storyLiked[curS.id]}}), storyLikeColor:s.storyLiked[curS.id]?'#db4e66':'#fff',
+      call:s.call||{name:'',i:'',src:''}, callGrad:T.grad, callLabel:s.callSecs<3?'Ringing…':Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0'),
+      toggleMute:()=>set({muted:!s.muted}), muteBg:s.muted?'#fff':'rgba(255,255,255,.2)', muteFg:s.muted?'#0f172a':'#fff', endCall:()=>{this.close();this.flash('Call ended');},
+      toast:s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>
